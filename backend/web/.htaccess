@@ -1,0 +1,21 @@
+<IfModule mod_autoindex.c>
+  # Запрещаем просмотр содержымого папок
+  Options -Indexes
+</IfModule>
+
+php_value upload_max_filesize 30M
+php_value post_max_size 30M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  # Включаем mod_rewrite
+  RewriteEngine On
+
+  # Если это папка или файл, открываем её/его
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # В противном случае перенаправляем на index.php
+  RewriteRule . index.php
+</IfModule>

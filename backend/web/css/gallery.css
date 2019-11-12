@@ -1,0 +1,58 @@
+.thumb-info{
+    width:150px;
+
+}
+
+.imageThumb {
+    max-height: 100px;
+    border: 1px solid #aaa;
+    padding: 5px;
+    cursor: pointer;
+}
+.pip,
+.pip_old{
+    display: inline-block;
+    margin: 10px 10px 0 0;
+}
+.remove,
+.remove-ajax
+{
+    display: block;
+    background: red;
+    border: 1px solid #aaa;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+.remove:hover,
+.remove-ajax:hover{
+    background: #cc2406;
+//color: black;
+}
+
+.attribute-row{
+    margin: 5px 0px;
+}
+
+.color-box{
+    float: left;
+    width: 32px;
+    height: 24px;
+    border:1px solid #333;
+}
+.color-box-attr{
+    float: left;
+    width: 24px;
+    height: 24px;
+    border:1px solid #333;
+    margin-right: 5px;
+
+}
+/* .delete-color{
+    float: left;
+    cursor: pointer;
+    margin-right:5px;
+} */
+.color-block{
+    margin: 5px 0px;
+}
