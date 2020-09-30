@@ -194,19 +194,21 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                 $nav ='';
                 if($cars_slider) {
                     $_types = [
+                        11=>'pickups',
                         12=>'bus',
                         13=>'trucks',
                         14=>'special',
+
                     ];
                     foreach ($cars_slider as $car) {
                         ?>
                         <div class="item flex_row_beet">
                             <div class="text" data-aos="fade-right">
                                 <p><?= TextHelper::trim($car->$text, 400) ?></p>
-                                <!--<a href="/transport/<?/*=$_types[$car->category_id] */?>" class="redBtn preload"><span><?/*=LangHelper::t("Перейти", "Батафсил", "More details");*/?></span></a>-->
+                                <!--<a href="/transport/<?/*=$_types[$car->category_id] */?>" class="redBtn preload"><span><?/*=LangHelper::t("Перейти", "O`tish", "More details");*/?></span></a>-->
 
                                 <a href="/transport/<?=$_types[$car->category_id] ?>" class="ButtonBox js_internal-link" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
-                                    <span class="ButtonBox-text"><?=LangHelper::t("Перейти", "Батафсил", "More details"); ?></span>
+                                    <span class="ButtonBox-text"><?=LangHelper::t("Перейти", "O`tish", "More details"); ?></span>
                                     <span class="ButtonBox-icon">
                                         <svg id="arrow-light-right" viewBox="0 0 16 14" width="100%" height="100%"><path d="M9.8.5H8.2l5.6 5.9H.1v1.2h13.7l-5.6 5.9h1.6L15.9 7z"></path></svg>
                                     </span>
@@ -244,6 +246,11 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
         <div class="medium_container mt">
             <div class="sliderFor" data-aos="zoom-in">
                 <?php
+                $links = [
+                    1 => '/services/centres',
+                    2 => '/services/warranty',
+                    3 => '/services/spare-parts'
+                ];
                 $nav_product = '';
                 if($products) {
                     foreach ($products as $product) {
@@ -253,17 +260,17 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                                 <h2 class="_black"><?= $product->$title ?></h2>
                                 <p><?= TextHelper::trim($product->$text, 200) ?></p>
                                 <!--<a href="/localization" class="redBtn preload"><span><?/*=LangHelper::t("Запасные части", "Ehtiyot qismlar", "Spare parts");*/?></span></a>-->
-                                <a href="/localization" class="ButtonBox js_internal-link" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
-                                    <span class="ButtonBox-text"><?=LangHelper::t("Запасные части", "Ehtiyot qismlar", "Spare parts"); ?></span>
+                                <a href="<?= $links[$product->id] ?>" class="ButtonBox js_internal-link" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
+                                    <span class="ButtonBox-text"><?=LangHelper::t("Перейти", "O'tish", "More"); ?></span>
                                     <span class="ButtonBox-icon">
                                     <svg id="arrow-light-right" viewBox="0 0 16 14" width="100%" height="100%"><path d="M9.8.5H8.2l5.6 5.9H.1v1.2h13.7l-5.6 5.9h1.6L15.9 7z"></path></svg>
                                 </span>
                                 </a>
                             </div>
-                            <a href="/localization" class="img"><img src="/uploads/products/<?=$product->id .'/'. $product->image ?>" alt=""></a>
+                            <a href="<?= $links[$product->id] ?>" class="img"><img src="/uploads/products/<?=$product->id .'/'. $product->image ?>" alt=""></a>
                         </div>
                         <?php
-                        $nav_product .= '<div class="item"><img src="/uploads/products/'.$product->id .'/thumb/'. $product->image . '" alt=""></div> <div class="item"><img src="/uploads/products/'.$product->id .'/thumb/'. $product->image . '" alt=""></div>';
+                        $nav_product .= '<div class="item"><img src="/uploads/products/'.$product->id .'/thumb/'. $product->image . '" alt=""></div> ';
                     }
                 } ?>
             </div>
@@ -363,18 +370,21 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
         </div>
     </section>
 
-    <section class="last-section section _normalScroll">
+    <section class="last-section section _normalScroll" id="slide-5">
         <div class="scrollTop">
             <img src="/images/prev-arrow.png"/>
         </div>
         <div class="scroll">
 
-            <section class="news-design" style="height: 100vh;">
-                <div class="row">
+            <section class="news-design" style="min-height: 100vh">
+                <div class="sot-network">
+                    <h2>Новости и RSS</h2>
+                </div>
+                <div class="row" style="min-height: 67vh">
                     <?php if($news) {
                         $i = 0;
                         foreach ($news as $item) { ?>
-                            <a href="/news/<?=$item->$link ?>" class="item" data-aos="zoom-in">
+                            <a href="/news/<?=$item->$link ?>" class="item" data-aos="zoom-in" >
                                 <div>
                                     <div style="background-image: url(/uploads/news/<?=$item->id .'/' . $item->image ?>);"></div>
                                 </div>
@@ -386,6 +396,21 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                         <?php }
                     } ?>
                 </div>
+                <div class="rss-apps">
+                    <div class="rss-item">
+                        <!-- telegram -->
+                        <rssapp-carousel id="D0ee6D3tGwieM9Xd"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script>
+                    </div>
+                    <div class="rss-item">
+                        <!-- facebook -->
+                        <rssapp-carousel id="NE1bFGzpRNgxSAsO"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script>
+                    </div>
+                    <div class="rss-item">
+                        <!-- youtube -->
+                        <rssapp-carousel id="nCQ1o8qkEHVdsUkj"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script>
+                    </div>
+                </div>
+
             </section>
 
             <div class="main-footer">
@@ -393,9 +418,9 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                     <div class="contactPage">
                         <ul>
                             <li class="ul_title"><a><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></a></li>
-                            <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING MISSIYASI", "COMPANY'S MISSION"); ?></a></li>
+                            <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING VAZIFASI", "COMPANY'S MISSION"); ?></a></li>
                             <li><a href="/about/history"><?=LangHelper::t("ИСТОРИЯ", "TARIXI", "HISTORY"); ?></a></li>
-                            <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></a></li>
+                            <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></a></li>
                             <li><a href="/about/documents"><?=LangHelper::t("ДОКУМЕНТЫ КОМПАНИИ", "KOMPANIYA HUJJATLARI", "COMPANY DOCUMENTS"); ?></a></li>
                             <li><a href="/about/vacancy"><?=LangHelper::t("КАРЬЕРА", "KARYERA", "CAREER"); ?></a></li>
                             <li><a href="/contacts"><?=LangHelper::t("КОНТАКТНАЯ ИНФОРМАЦИЯ", "ALOQA", "CONTACTS"); ?></a></li>
@@ -408,7 +433,7 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                             <li><a href="/transport/special"><?=LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"); ?></a></li>
                             <li class="empty_li" style="opacity: 0!important; pointer-events: none!important;"><a href="#">a</a></li>
                             <li><a href="/dillers"><?=LangHelper::t("ДИЛЕРЫ", "DILERLAR", "DEALERS"); ?></a></li>
-                            <li><a href="/dillers"><?=LangHelper::t("ЗАПЧАСТИ", "EHTIYOT QISMLAR", "SPARE PARTS"); ?></a></li>
+                            <li><a href="/spare-parts"><?=LangHelper::t("ЗАПЧАСТИ", "EHTIYOT QISMLAR", "SPARE PARTS"); ?></a></li>
                             <li><a href="/localization"><?=LangHelper::t("ЛОКАЛИЗАЦИЯ", "MAHALLIYLASHTIRISH", "LOCALIZATION"); ?></a></li>
                         </ul>
                         <ul>
@@ -511,7 +536,7 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
             <div class="footer">
                 <div class="flex_row_beet_cen medium_container">
                     <div class="copyright">
-                        <a href="#"><span>Developed by</span><img src="/images/logo-golden-minds.png" alt=""></a>
+                        <a href="https://goldenminds.uz" target="_blank"><span>Разработка сайта</span><img src="/images/logo-golden-minds.png" alt=""></a>
                         <div>Copyright @ <?=LangHelper::t("Все права защищены", "Barcha huquqlar himoyalangan", "All rights reserved"); ?></div>
                     </div>
                     <div class="external_links">

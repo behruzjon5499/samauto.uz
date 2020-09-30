@@ -1,5 +1,6 @@
 <?php
 return [
+    'timezone' => 'Asia/Tashkent',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',    
 	'modules' => [
         /*'food' => [

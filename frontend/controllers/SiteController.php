@@ -143,7 +143,7 @@ class SiteController extends Controller
             $products= false;
         }
 
-        if(!$news = News::find()->where(['status' => 1])->limit(9)->all()){
+        if(!$news = News::find()->where(['status' => 1])->andwhere(['hit' => 1])->orderBy('date DESC')->limit(9)->all()){
             $news = false;
         }
 
@@ -637,7 +637,7 @@ class SiteController extends Controller
     }
 
     public function actionNews(){
-        $query = News::find()->where(['status'=>0])->orderBy('date ASC');
+        $query = News::find()->where(['status'=>1])->orderBy('date DESC');
         $count = $query->count();
         $pages = new Pagination(['totalCount' => $count, 'pageSize'=>12]);
         $news = $query->offset($pages->offset)
@@ -673,7 +673,7 @@ class SiteController extends Controller
         $queryFaqs = Faqs::find()->where(['status' => 1]);
         $queryHistory = HistoryEvents::find()->where(['status' => 1]);
         $queryMissions = Missions::find();
-        $queryNews = News::find()->where(['status' => 1]);
+        $queryNews = News::find()->where(['status' => 1])->orderBy('date DESC');
         $queryLocalization = Categories::find()->select("id,parent_id,title_{$this->lang},link_{$this->lang}")->with('parent');
         $queryTransport = Transport::find()->where(['status' => 1]);
         $queryVacancy = Vacancy::find()->where(['status' => 1]);

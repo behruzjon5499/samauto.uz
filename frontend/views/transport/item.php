@@ -6,31 +6,44 @@
  * Time: 10:28
  */
 
-use frontend\assets\TransportAsset;
 use common\helpers\LangHelper;
+use frontend\assets\TransportAsset;
 
 TransportAsset::register($this);
 
-$title = 'title_'.$lang;
+$title = 'title_' . $lang;
+$content = 'content_'.$lang;
 $file_title = 'file_title_'.$lang;
+$destination = 'destination_'.$lang;
+$podves_front = 'podves-front_'.$lang;
+$podves_back = 'podves-back_'.$lang;
+$abs = 'abs_'.$lang;
+$gears = 'gears_'.$lang;
 
-$this->title =LangHelper::t("ТРАНСПОРТ", "TRANSPORT", "TRANSPORT") . '. ' . $transport->$title;
+
+$this->title = LangHelper::t("ТРАНСПОРТ", "TRANSPORT", "TRANSPORT") . '. ' . $transport->$title;
 // echo '<pre>'; print_r($data); echo '</pre>';
 
 $_transport_types = [
-        LangHelper::t("АВТОБУСЫ", "AVTOBUSLAR", "BUSES"),
-        LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK MASHINALARI", "TRUCKS"),
-        LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"),
+    LangHelper::t("АВТОБУСЫ", "AVTOBUSLAR", "BUSES"),
+    LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS"),
+    LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"),
+    LangHelper::t("ПИКАПЫ", "PIKAPLAR", "PICKUPS"),
 ];
 
 $_transport_url = [
-        'bus',
-        'trucks',
-        'special',
+    'bus',
+    'trucks',
+    'special',
+    'pickups',
 ];
 
-
-
+// расположение поршней
+@$data['destination'] = @$data[$destination] ?? @$data['destination'];
+@$data['podves-front'] = @$data[$podves_front] ?? @$data['podves-front'];
+@$data['podves-back'] = @$data[$podves_back] ?? @$data['podves-back'];
+@$data['abs'] = @$data[$abs] ?? @$data['abs'];
+@$data['gears'] = @$data[$gears] ?? @$data['gears'];
 // расположение поршней
 $_engine['type'][0] =LangHelper::t("Рядный", "Bir qator", "In line");
 $_engine['type'][1] =LangHelper::t("V-образный", "V-simon", "V-type");
@@ -50,32 +63,41 @@ $_engine['gearstop-back'][1] =LangHelper::t("Барабанные", "Barabanli",
 $_engine['fuel-type'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
 $_engine['fuel-type'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
 $_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
+$_engine['abs'][0] =LangHelper::t("Имеется", "Mavjud", "Available");
+$_engine['abs'][1] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
+$_engine['abs']['Есть'] =LangHelper::t("Имеется", "Mavjud", "Available");
+$_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
 ?>
+    <div class="transport-page section-gap">
+        <div class="small_container">
+            <div class="flex_row_beet" style="align-items:flex-start;flex-wrap:wrap">
+                <?php $_title = preg_replace("/<br>/Ui", "  ", $transport->$title) ?>
+                <div class="mTitle" data-aos="fade-right"><?= $_title ?></div>
+                <?php if (isset($data['file']) && $data['file'] != '') { ?>
+                    <a href="/uploads/transport/<?= $transport->id . '/' . $data['file'] ?>" download
+                       class="download"><?= LangHelper::t("СКАЧАТЬ", "YUKLAB OLISH", "DOWNLOAD"); ?>
+                        : <?= $transport->$file_title ?></a>
+                <?php } ?>
+            </div>
 
-<div class="transport-page section-gap">
-    <div class="small_container">
-        <div class="flex_row_beet" style="align-items:flex-start;flex-wrap:wrap">
-            <?php $_title = preg_replace("/<br>/Ui","  ",$transport->$title) ?>
-            <div class="mTitle" data-aos="fade-right"><?=$_title ?></div>
-            <?php if(isset($data['file']) && $data['file']!=''){ ?>
-                <a href="/uploads/transport/<?=$transport->id . '/' . $data['file'] ?>" download class="download"><?=LangHelper::t("СКАЧАТЬ", "YUKLAB OLISH", "DOWNLOAD"); ?>: <?=$transport->$file_title ?></a>
-            <?php } ?>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="200">
-            <div class="gallery gallerySlider">
-                <div class="wrap">
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="gallery gallerySlider">
+                    <div class="wrap">
 
-                    <?php if($transport->gallery) {
-                        foreach ($transport->gallery as $gallery) {
-                            ?>
-                            <div class="item">
-                                <div>
-                                    <img src="/uploads/transport/<?=$gallery->transport_id .'/gallery/thumb/' . $gallery->image ?>" alt="">
-                                    <a href="/uploads/transport/<?=$gallery->transport_id .'/gallery/' . $gallery->image ?>" data-lightbox="gallery" class="overlayBlack">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.3098mm"
-                                             height="2.28mm" version="1.1"
-                                             style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;fill-rule:evenodd;clip-rule:evenodd"
-                                             viewBox="0 0 17.24 17.02" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <?php if ($transport->gallery) {
+                            foreach ($transport->gallery as $gallery) {
+                                ?>
+                                <div class="item">
+                                    <div>
+                                        <img src="/uploads/transport/<?= $gallery->transport_id . '/gallery/thumb/' . $gallery->image ?>"
+                                             alt="">
+                                        <a href="/uploads/transport/<?= $gallery->transport_id . '/gallery/' . $gallery->image ?>"
+                                           data-lightbox="gallery" class="overlayBlack">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                                 width="2.3098mm"
+                                                 height="2.28mm" version="1.1"
+                                                 style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;fill-rule:evenodd;clip-rule:evenodd"
+                                                 viewBox="0 0 17.24 17.02">
                                             <g>
                                                 <g>
                                                     <path d="M-0 6.9c0,1.33 0.14,2.27 0.7,3.37 0.46,0.91 1.1,1.82 1.92,2.45 0.97,0.75 1.73,1.14 2.96,1.45 0.27,0.07 0.46,0.09 0.77,0.13 1.54,0.21 2.85,-0.13 4.19,-0.8l0.9 -0.52 3.01 3.71c0.72,0.76 1.11,0.06 1.83,-0.65 0.21,-0.22 0.98,-0.87 0.98,-1.15 0,-0.62 -0.86,-1.1 -1.39,-1.56 -0.65,-0.57 -1.44,-1.17 -2.13,-1.75 -0.09,-0.08 -0.17,-0.13 -0.27,-0.21 -0.13,-0.11 -0.12,-0.12 -0.28,-0.21 0.04,-0.15 0.12,-0.26 0.2,-0.39 0.09,-0.14 0.14,-0.25 0.21,-0.39 0.91,-1.82 0.97,-3.74 0.32,-5.66 -0.08,-0.25 -0.17,-0.4 -0.26,-0.63l-0.3 -0.56c-0.06,-0.1 -0.12,-0.17 -0.18,-0.27l-0.36 -0.5c-0.15,-0.21 -0.65,-0.75 -0.85,-0.91 -0.85,-0.65 -0.8,-0.71 -1.87,-1.22 -0.37,-0.18 -0.89,-0.33 -1.32,-0.44 -1.44,-0.35 -3.15,-0.19 -4.48,0.41 -1.61,0.72 -2.6,1.72 -3.44,3.17l-0.41 0.89c-0.08,0.22 -0.15,0.45 -0.22,0.68 -0.12,0.41 -0.23,1.05 -0.23,1.56zm7.16 -5.46c3.14,0 5.68,2.54 5.68,5.68 0,3.13 -2.54,5.68 -5.68,5.68 -3.14,0 -5.68,-2.54 -5.68,-5.68 0,-3.14 2.54,-5.68 5.68,-5.68z"></path>
@@ -83,14 +105,14 @@ $_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
                                                 </g>
                                             </g>
                                         </svg>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php }
-                    } ?>
+                            <?php }
+                        } ?>
 
+                    </div>
                 </div>
-            </div>
             <div class="nav-tabs">
                 <div class="menu-links">
                     <a href="#" class="active"><?=LangHelper::t("ОСНОВНЫЕ ХАРАКТЕРИСТИКИ", "ASOSIY TASNIFLARI", "MAIN SPECIFICATIONS"); ?></a>
@@ -301,7 +323,7 @@ $_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
                     <div>
                         <div class="t"><?=LangHelper::t("Система ABS", "ABS tizimi", "ABS system"); ?></div>
                         <div class="scrollY">
-                            <p><?=@$data['abs']?></p>
+                            <p><?= @$_engine['abs'][@$data['abs']] ?><br>
                         </div>
                     </div>
                     <?php
@@ -395,25 +417,28 @@ $_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
                             <p>- Сиденье водителя с механическим подрессориванием</p>
                         </div>
                     </div> */ ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div data-aos="fade-up">
+
+
+        <div class="site_bread">
+            <div class="centerBox">
+                <a href="/"><?= LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
+                <a href="/transport"><?= LangHelper::t("КАТЕГОРИИ МАШИН", "MASHINA KATEGORIYALARI", "MACHINE CATEGORIES"); ?></a>
+                <a href="/transport/<?= $_transport_url[$transport->type] ?>"><?= Yii::t('app', $_transport_types[$transport->type]) ?></a>
+                <span><?= $transport->model ?></span>
+            </div>
         </div>
-    </div>
-</div>
 
-<div data-aos="fade-up">
+        <?= $this->render('../layouts/_footer') ?>
 
-<div class="site_bread">
-    <div class="centerBox">
-        <a href="/"><?=LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
-        <a href="/transport"><?=LangHelper::t("КАТЕГОРИИ МАШИН", "MASHINA KATEGORIYALARI", "MACHINE CATEGORIES"); ?></a>
-        <a href="/transport/<?=$_transport_url[$transport->type] ?>"><?=Yii::t('app',$_transport_types[$transport->type])?></a>
-        <span><?=$transport->model ?></span>
-    </div>
-</div>
 
-<?= $this->render('../layouts/_footer') ?>
 
 <?php
 $script = "$('document').ready(function(){
@@ -441,6 +466,7 @@ $script = "$('document').ready(function(){
     $('.tab-caption').overlayScrollbars({});
    
 });";
+
 $this->registerJs($script, yii\web\View::POS_END);
 
 

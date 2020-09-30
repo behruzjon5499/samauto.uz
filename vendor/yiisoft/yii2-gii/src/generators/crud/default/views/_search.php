@@ -22,6 +22,11 @@ use yii\widgets\ActiveForm;
     <?= "<?php " ?>$form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+<?php if ($generator->enablePjax): ?>
+        'options' => [
+            'data-pjax' => 1
+        ],
+<?php endif; ?>
     ]); ?>
 
 <?php
@@ -36,7 +41,7 @@ foreach ($generator->getColumnNames() as $attribute) {
 ?>
     <div class="form-group">
         <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Search') ?>, ['class' => 'btn btn-primary']) ?>
-        <?= "<?= " ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-default']) ?>
+        <?= "<?= " ?>Html::resetButton(<?= $generator->generateString('Reset') ?>, ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?= "<?php " ?>ActiveForm::end(); ?>

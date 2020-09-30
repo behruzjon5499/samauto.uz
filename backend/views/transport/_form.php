@@ -93,9 +93,35 @@ $op = json_decode($model->data,true);
                         </div>
                         <div id="collapse" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                             <div class="box-body">
-                                <label>Назначение</label>
-                                <input type="text" name="complect[destination]" class="form-control" value="<?=@$op['complect']['destination']?>"><br>
-                                <label>Класс ТС</label>
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tabLang_1" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                        <li class=""><a href="#tabLang_2" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                        <li class=""><a href="#tabLang_3" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane active" id="tabLang_1">
+                                            <label>Назначение Ru</label>
+                                            <input type="text" name="complect[destination_ru]" class="form-control" value="<?=@$op['complect']['destination_ru']?>"><br>
+
+                                        </div>
+
+                                        <div class="tab-pane " id="tabLang_2">
+                                            <label>Назначение Uz</label>
+                                            <input type="text" name="complect[destination_uz]" class="form-control" value="<?=@$op['complect']['destination_uz']?>"><br>
+
+                                        </div>
+
+                                        <div class="tab-pane " id="tabLang_3">
+                                            <label>Назначение En</label>
+                                            <input type="text" name="complect[destination_en]" class="form-control" value="<?=@$op['complect']['destination_en']?>"><br>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                 <label>Класс ТС</label>
                                 <input type="text" name="complect[class]" class="form-control" value="<?=@$op['complect']['class']?>"><br>
                             </div>
                         </div>
@@ -188,12 +214,62 @@ $op = json_decode($model->data,true);
                                     <label>Подвеска</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Передняя ось</label>
-                                            <input type="text" name="complect[podves-front]" class="form-control" value="<?=@$op['complect']['podves-front']?>">
+
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabLang_11" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                                    <li class=""><a href="#tabLang_22" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                                    <li class=""><a href="#tabLang_33" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabLang_11">
+
+                                                        <label>Передняя ось Ru</label>
+                                                        <input type="text" name="complect[podves-front_ru]" class="form-control" value="<?=@$op['complect']['podves-front_ru']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_22">
+                                                        <label>Передняя ось Uz</label>
+                                                        <input type="text" name="complect[podves-front_uz]" class="form-control" value="<?=@$op['complect']['podves-front_uz']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_33">
+
+                                                        <label>Передняя ось En</label>
+                                                        <input type="text" name="complect[podves-front_en]" class="form-control" value="<?=@$op['complect']['podves-front_en']?>">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Задняя ось</label>
-                                            <input type="text" name="complect[podves-back]" class="form-control" value="<?=@$op['complect']['podves-back']?>">
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabLang_111" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                                    <li class=""><a href="#tabLang_222" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                                    <li class=""><a href="#tabLang_333" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabLang_111">
+                                                        <label>Задняя ось Ru</label>
+                                                        <input type="text" name="complect[podves-back_ru]" class="form-control" value="<?=@$op['complect']['podves-back_ru']?>">
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_222">
+                                                        <label>Задняя ось Uz</label>
+                                                        <input type="text" name="complect[podves-back_uz]" class="form-control" value="<?=@$op['complect']['podves-back_uz']?>">
+                                                    </div>
+                                                    <div class="tab-pane " id="tabLang_333">
+                                                        <label>Задняя ось En</label>
+                                                        <input type="text" name="complect[podves-back_en]" class="form-control" value="<?=@$op['complect']['podves-back_en']?>">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <br>
@@ -215,8 +291,104 @@ $op = json_decode($model->data,true);
                                         </div>
                                     </div>
                                     <br>
-                                    <label>Колесная формула</label>
-                                    <input type="text" name="complect[gears]" class="form-control" value="<?=@$op['complect']['gears']?>">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabLang_11" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                                    <li class=""><a href="#tabLang_22" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                                    <li class=""><a href="#tabLang_33" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabLang_11">
+
+                                                        <label>Передняя ось Ru</label>
+                                                        <input type="text" name="complect[podves-front_ru]" class="form-control" value="<?=@$op['complect']['podves-front_ru']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_22">
+                                                        <label>Передняя ось Uz</label>
+                                                        <input type="text" name="complect[podves-front_uz]" class="form-control" value="<?=@$op['complect']['podves-front_uz']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_33">
+
+                                                        <label>Передняя ось En</label>
+                                                        <input type="text" name="complect[podves-front_en]" class="form-control" value="<?=@$op['complect']['podves-front_en']?>">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabLang_111" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                                    <li class=""><a href="#tabLang_222" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                                    <li class=""><a href="#tabLang_333" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabLang_111">
+                                                        <label>Задняя ось Ru</label>
+                                                        <input type="text" name="complect[podves-back_ru]" class="form-control" value="<?=@$op['complect']['podves-back_ru']?>">
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_222">
+                                                        <label>Задняя ось Uz</label>
+                                                        <input type="text" name="complect[podves-back_uz]" class="form-control" value="<?=@$op['complect']['podves-back_uz']?>">
+                                                    </div>
+                                                    <div class="tab-pane " id="tabLang_333">
+                                                        <label>Задняя ось En</label>
+                                                        <input type="text" name="complect[podves-back_en]" class="form-control" value="<?=@$op['complect']['podves-back_en']?>">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabLang_1111" data-toggle="tab" aria-expanded="true">RU</a></li>
+                                                    <li class=""><a href="#tabLang_2222" data-toggle="tab" aria-expanded="true">UZ</a></li>
+                                                    <li class=""><a href="#tabLang_3333" data-toggle="tab" aria-expanded="true">EN</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabLang_1111">
+
+                                                        <label>Колесная формула Ru</label>
+                                                        <input type="text" name="complect[gears_ru]" class="form-control" value="<?=@$op['complect']['gears_ru']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_2222">
+                                                        <label>Колесная формула Uz</label>
+                                                        <input type="text" name="complect[gears_uz]" class="form-control" value="<?=@$op['complect']['gears_uz']?>">
+
+                                                    </div>
+
+                                                    <div class="tab-pane " id="tabLang_3333">
+
+                                                        <label>Колесная формула En</label>
+                                                        <input type="text" name="complect[gears_en]" class="form-control" value="<?=@$op['complect']['gears_en']?>">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <label>Колесная формула</label>-->
+<!--                                    <input type="text" name="complect[gears]" class="form-control" value="--><?//=@$op['complect']['gears']?><!--">-->
                                     <label>Колея</label>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -345,7 +517,14 @@ $op = json_decode($model->data,true);
                                     <label>Грузоподъемность, кг</label>
                                     <input type="text" name="complect[mass-max]" class="form-control" value="<?=@$op['complect']['mass-max']?>"><br>
                                     <label>Система ABS</label>
-                                    <input type="text" name="complect[abs]" class="form-control" value="<?=@$op['complect']['abs']?>"><br>
+                                    <select name="complect[abs]" class="form-control">
+                                        <option value="0" <?=@$op['complect']['abs']=='0'?'selected':''?>>Имеется</option>
+                                        <option value="1" <?=@$op['complect']['abs']=='1'?'selected':''?>>Не имеется</option>
+                                    </select>
+                                    <label>Размер Шин</label>
+                                    <input type="text" name="complect[шин]" class="form-control" value="<?=@$op['complect']['шин']?>"><br>
+                                    <label>Размер Колёс</label>
+                                    <input type="text" name="complect[колёс]" class="form-control" value="<?=@$op['complect']['колёс']?>"><br>
 
                                 </div>
                             </div>
@@ -463,6 +642,7 @@ $op = json_decode($model->data,true);
             "0" => "Автобусы",
             "1" => "Грузовики",
             "2" => "Спецтехника",
+            "3" => "Пикапы",
         ], $param = ["options" => [$model->type => ["selected" => true]]]);
     ?>
 

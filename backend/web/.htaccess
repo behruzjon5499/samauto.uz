@@ -19,3 +19,4 @@ php_value max_input_time 300
   # В противном случае перенаправляем на index.php
   RewriteRule . index.php
 </IfModule>
+

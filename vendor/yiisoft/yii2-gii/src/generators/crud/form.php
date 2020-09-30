@@ -13,6 +13,5 @@ echo $form->field($generator, 'indexWidgetType')->dropDownList([
     'list' => 'ListView',
 ]);
 echo $form->field($generator, 'enableI18N')->checkbox();
-echo $form->field($generator, 'gallery')->checkbox();
-echo $form->field($generator, 'lang')->textInput(['placeholder'=>'ru,en']); // языки через запятую
+echo $form->field($generator, 'enablePjax')->checkbox();
 echo $form->field($generator, 'messageCategory');

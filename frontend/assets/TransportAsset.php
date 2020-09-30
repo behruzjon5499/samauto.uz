@@ -13,10 +13,12 @@ class TransportAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'libs/lightbox/lightbox.css',
+//        'transport/css/style.css',
 
     ];
     public $js = [
         'libs/lightbox/lightbox.min.js',
+        'transport/css/style.js',
 
     ];
     public $depends = [

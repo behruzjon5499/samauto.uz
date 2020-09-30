@@ -41,7 +41,7 @@ if($lang=='ru') {
 }elseif ($lang=="en"){
     $labels = '["week", "day", "hour", "min", "sec"]';
 }elseif ($lang=="uz"){
-    $labels = '["хафт", "кун", "соат", "дак", "сек"]';
+    $labels = '["hafta", "kun", "soat", "daqiqa", "sec"]';
 }
 
 $date_end = date('m, d, Y',$action->date_end);

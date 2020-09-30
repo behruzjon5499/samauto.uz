@@ -12,6 +12,7 @@
 */
 
 namespace mihaildev\elfinder;
+use mihaildev\elfinder\volume\Local;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use Yii;
@@ -23,14 +24,8 @@ use Yii;
  */
 class PathController extends BaseController{
 	public $disabledCommands = ['netmount'];
-	public $root = [
-		'baseUrl' => '@web/files',
-		'basePath' => '@webroot/files',
-		'path' => ''
-	];
+	public $root = [];
 	public $watermark;
-
-
 
 	private $_options;
 
@@ -49,7 +44,10 @@ class PathController extends BaseController{
 			$root = ['path' => $root];
 
 		if(!isset($root['class']))
-			$root['class'] = 'mihaildev\elfinder\LocalPath';
+			$root['class'] = Local::className();
+
+		if(!isset($root['path']))
+			$root['path'] = '';
 
 		if(!empty($subPath)){
 			if(preg_match("/\./i", $subPath)){
@@ -61,10 +59,9 @@ class PathController extends BaseController{
 			}
 		}
 
-
 		$root = Yii::createObject($root);
 
-		/** @var \mihaildev\elfinder\LocalPath $root*/
+		/** @var Local $root*/
 
 		if($root->isAvailable())
 			$this->_options['roots'][] = $root->getRoot();

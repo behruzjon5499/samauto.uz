@@ -19,7 +19,7 @@ $text = 'text_' . $lang;
 $days = 'days_' . $lang;
 $doljnost = 'doljnost_' . $lang;
 
-$_title =LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT");
+$_title =LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT");
 $this->title = $_title;
 
 if($worker) { ?>
@@ -111,7 +111,7 @@ if($worker) { ?>
 
         <div class="section-gap leaders_page">
             <div class="very_small_container">
-                <div class="mTitle"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></div>
+                <div class="mTitle"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></div>
                 <div class="leaders_page--wrap">
                     <ul class="leaders_page--ul">
 
@@ -188,7 +188,7 @@ if($worker) { ?>
 	<div class="centerBox">
         <a href="/" class="preload"><?=LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
         <a href="/about" class="preload"><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></a>
-        <span><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></span>
+        <span><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></span>
 	</div>
 </div>
 

@@ -1,9 +1,12 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
+use frontend\assets\IrbisAsset;
 use yii\helpers\Html;
+
 //use yii\bootstrap\Nav;
 //use yii\bootstrap\NavBar;
 //use yii\widgets\Breadcrumbs;
@@ -12,26 +15,25 @@ use frontend\assets\MainAsset;
 //use common\widgets\Alert;
 use common\helpers\LangHelper;
 
-if( Yii::$app->controller->id=='site' && Yii::$app->controller->action->id=='index'  ){
+if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {
     MainAsset::register($this);
     $is_main = true;
 
-}else{
+} else {
     $is_main = false;
 }
 
 
 $lang = Yii::$app->session->get('lang');
-if($lang=='') $lang = 'ru';
+if ($lang == '') $lang = 'ru';
 
 AppAsset::register($this);
 
+if ($files = \common\models\Pages::find()->where(['page' => 'files'])->one()) {
 
-if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
+    $files = json_decode($files->data, true);
 
-    $files = json_decode($files->data,true);
-
-}else{
+} else {
 
     $files = false;
 
@@ -51,8 +53,53 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(57162376, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/57162376" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156809049-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-156809049-1');
+    </script> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156801045-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-156801045-1');
+	</script>
+
+    
 </head>
-<body style="<?=$is_main ? 'overflow-y: hidden' : '' ?>">
+<body style="<?= $is_main ? 'overflow-y: hidden' : '' ?>">
 <?php $this->beginBody() ?>
 
 <div class="full-page-definder"></div>
@@ -66,11 +113,11 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
             <div class="closeBtn"><span></span><span></span>
             </div>
             <div>
-                <input type="text" id="download_price_name" placeholder="<?=LangHelper::t("Имя", "Исми", "Name"); ?>*" autocomplete="off">
-                <input type="email"  id="download_price_email" placeholder="E-mail*" autocomplete="off">
-                <input type="company" id="download_price_company" placeholder="<?=LangHelper::t("Компания", "Kompaniya", "Company"); ?>" autocomplete="off">
-                <input type="phone" id="download_price_phone" placeholder="<?=LangHelper::t("Телефон", "Telefon raqami", "Phone"); ?>" autocomplete="off">
-                <a href="/uploads/files/<?=$files['file_price'] ?>" class="redBtn download-price" download=""><span><?=LangHelper::t("Скачать", "Yuklab olish", "Download"); ?></span></a>
+                <input type="text" id="download_price_name" placeholder="<?= LangHelper::t("Имя", "Исми", "Name"); ?>*" autocomplete="off">
+                <input type="email" id="download_price_email" placeholder="E-mail*" autocomplete="off">
+                <input type="company" id="download_price_company" placeholder="<?= LangHelper::t("Компания", "Kompaniya", "Company"); ?>" autocomplete="off">
+                <input type="phone" id="download_price_phone" placeholder="<?= LangHelper::t("Телефон", "Telefon raqami", "Phone"); ?>" autocomplete="off">
+                <a href="/uploads/files/<?= $files['file_price'] ?>" class="redBtn download-price" download=""><span><?= LangHelper::t("Скачать", "Yuklab olish", "Download"); ?></span></a>
             </div>
         </div>
     </div>
@@ -78,13 +125,13 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
 
 <?php
 
-$show_action_popup = (isset( $_COOKIE['sap'] ) && $_COOKIE['sap'] == 0 ) || !isset( $_COOKIE['sap'] ) ? true : false;
+$show_action_popup = (isset($_COOKIE['sap']) && $_COOKIE['sap'] == 0) || !isset($_COOKIE['sap']) ? true : false;
 
 // print_r($_COOKIE);
 
-if( $is_main && $show_action_popup ){
+if ($is_main && $show_action_popup) {
 
-    if ($action = \common\models\Actions::find()->where(['status' => 1])->andWhere(['>=','date_end',time()])->one()) { ?>
+    if ($action = \common\models\Actions::find()->where(['status' => 1])->andWhere(['>=', 'date_end', time()])->one()) { ?>
         <div class="modalStock">
             <div class="wrapper">
                 <div class="stock-item">
@@ -102,7 +149,7 @@ if( $is_main && $show_action_popup ){
                                 <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
                                 <polyline points="1 9 7 14 15 4"></polyline>
                             </svg>
-                            <span><?=LangHelper::t("Больше не показывать", "Boshqa ko'rsatilmasin", "Do not show again"); ?></span>
+                            <span><?= LangHelper::t("Больше не показывать", "Boshqa ko'rsatilmasin", "Do not show again"); ?></span>
                         </label>
                     </div>
 
@@ -116,7 +163,7 @@ if( $is_main && $show_action_popup ){
     <div class="overlayClose"></div>
     <div class="wrap">
         <form action="/search">
-            <input type="text" name="q" placeholder="<?=LangHelper::t("ПОИСК", "QIDIRUV", "SEARCH"); ?> . . .">
+            <input type="text" name="q" placeholder="<?= LangHelper::t("ПОИСК", "QIDIRUV", "SEARCH"); ?> . . .">
         </form>
     </div>
 </div>
@@ -131,18 +178,18 @@ if( $is_main && $show_action_popup ){
 
 <?php // page_wrap
 
-$server_error =LangHelper::t("Сервер недоступен! Повторите попытку позже.", "Server mavjud emas! Keyinroq qayta urinib ko‘ring.", "Server is not available! Please try again later."); 
+$server_error = LangHelper::t("Сервер недоступен! Повторите попытку позже.", "Server mavjud emas! Keyinroq qayta urinib ko‘ring.", "Server is not available! Please try again later.");
 
 
 // информация о событиях
-if( ! $info = Yii::$app->session->getFlash('info') ){
-    $info ='';
+if (!$info = Yii::$app->session->getFlash('info')) {
+    $info = '';
 }
 
-$info_success =LangHelper::t("Ваша заявка успешно отправлена!", "Sizning arizangiz muvaffaqiyatli yuborildi!", "Your application has been sent successfully!");
+$info_success = LangHelper::t("Ваша заявка успешно отправлена!", "Sizning arizangiz muvaffaqiyatli yuborildi!", "Your application has been sent successfully!");
 
 
-if($lang=='ru') {
+if ($lang == 'ru') {
     $labels = '["нед", "дня", "час", "мин", "сек"]';
     $l_parse = [
         1 => "нед",
@@ -151,7 +198,7 @@ if($lang=='ru') {
         4 => "мин",
         5 => "сек"
     ];
-}elseif ($lang=="en"){
+} elseif ($lang == "en") {
     $labels = '["week", "day", "hour", "min", "sec"]';
     $l_parse = [
         1 => "week",
@@ -160,22 +207,23 @@ if($lang=='ru') {
         4 => "min",
         5 => "sec"
     ];
-}elseif ($lang=="uz"){
-    $labels = '["хафта", "кун", "соат", "дак", "сек"]';
+} elseif ($lang == "uz") {
+    $labels = '["hafta", "kun", "soat", "daqiqa", "sec"]';
     $l_parse = [
-        1 => "хафта",
-        2 => "кун",
-        3 => "соат",
-        4 => "дак",
-        5 => "сек"
+        1 => "hafta",
+        2 => "kun",
+        3 => "soat",
+        4 => "daqiqa",
+        5 => "sec"
     ];
 }
-if(isset($action)){
-	$date_end = date('m, d, Y',$action->date_end);
-}else{
-	$date_end = date('m, d, Y',time()); // не найдена акция
+if (isset($action)) {
+    $date_end = date('m, d, Y', $action->date_end);
+} else {
+    $date_end = date('m, d, Y', time()); // не найдена акция
 }
 $script = "
+
 var info = '{$info}';
 if( info.length >0 ) alert(info);
 
@@ -370,7 +418,6 @@ $(document).ready(function () {
 });";
 $this->registerJs($script, yii\web\View::POS_END);
 
- 
 
 ?>
 

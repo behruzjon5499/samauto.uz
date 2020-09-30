@@ -68,11 +68,11 @@ class CaptchaAction extends Action
     /**
      * @var int the font color. For example, 0x55FF00. Defaults to 0x2040A0 (blue color).
      */
-    public $foreColor = 0x222222;
+    public $foreColor = 0x2040A0;
     /**
      * @var bool whether to use transparent background. Defaults to false.
      */
-    public $transparent = true;
+    public $transparent = false;
     /**
      * @var int the minimum length for randomly generated word. Defaults to 6.
      */

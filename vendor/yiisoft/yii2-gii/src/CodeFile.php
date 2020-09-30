@@ -8,7 +8,7 @@
 namespace yii\gii;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\gii\components\DiffRendererHtmlInline;
 use yii\helpers\Html;
 
@@ -22,7 +22,7 @@ use yii\helpers\Html;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class CodeFile extends Object
+class CodeFile extends BaseObject
 {
     /**
      * The code file is new.
@@ -59,9 +59,12 @@ class CodeFile extends Object
      * Constructor.
      * @param string $path the file path that the new code should be saved to.
      * @param string $content the newly generated code content.
+     * @param array $config name-value pairs that will be used to initialize the object properties
      */
-    public function __construct($path, $content)
+    public function __construct($path, $content, $config = [])
     {
+        parent::__construct($config);
+
         $this->path = strtr($path, '/\\', DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR);
         $this->content = $content;
         $this->id = md5($this->path);
@@ -74,17 +77,21 @@ class CodeFile extends Object
 
     /**
      * Saves the code into the file specified by [[path]].
-     * @return string|boolean the error occurred while saving the code file, or true if no error.
+     * @return string|bool the error occurred while saving the code file, or true if no error.
      */
     public function save()
     {
-        $module = Yii::$app->controller->module;
+        $module = isset(Yii::$app->controller) ? Yii::$app->controller->module : null;
         if ($this->operation === self::OP_CREATE) {
             $dir = dirname($this->path);
             if (!is_dir($dir)) {
-                $mask = @umask(0);
-                $result = @mkdir($dir, $module->newDirMode, true);
-                @umask($mask);
+                if ($module instanceof \yii\gii\Module) {
+                    $mask = @umask(0);
+                    $result = @mkdir($dir, $module->newDirMode, true);
+                    @umask($mask);
+                } else {
+                    $result = @mkdir($dir, 0777, true);
+                }
                 if (!$result) {
                     return "Unable to create the directory '$dir'.";
                 }
@@ -92,7 +99,9 @@ class CodeFile extends Object
         }
         if (@file_put_contents($this->path, $this->content) === false) {
             return "Unable to write the file '{$this->path}'.";
-        } else {
+        }
+
+        if ($module instanceof \yii\gii\Module) {
             $mask = @umask(0);
             @chmod($this->path, $module->newFileMode);
             @umask($mask);
@@ -108,9 +117,9 @@ class CodeFile extends Object
     {
         if (strpos($this->path, Yii::$app->basePath) === 0) {
             return substr($this->path, strlen(Yii::$app->basePath) + 1);
-        } else {
-            return $this->path;
         }
+
+        return $this->path;
     }
 
     /**
@@ -120,15 +129,15 @@ class CodeFile extends Object
     {
         if (($pos = strrpos($this->path, '.')) !== false) {
             return substr($this->path, $pos + 1);
-        } else {
-            return 'unknown';
         }
+
+        return 'unknown';
     }
 
     /**
      * Returns preview or false if it cannot be rendered
      *
-     * @return boolean|string
+     * @return bool|string
      */
     public function preview()
     {
@@ -142,15 +151,15 @@ class CodeFile extends Object
             return highlight_string($this->content, true);
         } elseif (!in_array($type, ['jpg', 'gif', 'png', 'exe'])) {
             return nl2br(Html::encode($this->content));
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
      * Returns diff or false if it cannot be calculated
      *
-     * @return boolean|string
+     * @return bool|string
      */
     public function diff()
     {
@@ -159,9 +168,9 @@ class CodeFile extends Object
             return false;
         } elseif ($this->operation === self::OP_OVERWRITE) {
             return $this->renderDiff(file($this->path), $this->content);
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**

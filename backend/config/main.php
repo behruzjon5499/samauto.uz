@@ -17,12 +17,12 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
             'cookieValidationKey' => 'lghrltjo56o4i56ha^ws%r@h3khk755$%415rw',
-            'baseUrl' => '/admin',
+//            'baseUrl' => '/admin',
         ],
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@app/views/lte'
+                    '@backend/views' => '@backend/views/lte'
                 ],
             ],
         ],		

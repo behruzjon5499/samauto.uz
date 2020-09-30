@@ -31,7 +31,7 @@ class NewsController extends Controller
     // 5 новостей
     public function actionIndex(){
 
-        if(!$news = News::find()->where(['status' => 1])->limit(5)->all()){
+        if(!$news = News::find()->where(['status' => 1])->orderBy('date DESC')->limit(9)->all()){
             $news = false;
         }
 

@@ -49,26 +49,9 @@ abstract class Generator extends Model
      */
     public $template = 'default';
     /**
-     * @var boolean whether the strings will be generated using `Yii::t()` or normal strings.
+     * @var bool whether the strings will be generated using `Yii::t()` or normal strings.
      */
     public $enableI18N = false;
-
-    /*
-     * @var boolean сохранение галереи в модели
-     * */
-
-    public $gallery = false;
-
-    /*
-     * @var string название таблицы галереи в модели
-     * */
-    public $galleryTable = false;
-
-    /*
-     * @var string языки перевода
-     * */
-
-    public $lang = false;
     /**
      * @var string the message category used by `Yii::t()` when `$enableI18N` is `true`.
      * Defaults to `app`.
@@ -90,7 +73,7 @@ abstract class Generator extends Model
     abstract public function generate();
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -104,7 +87,7 @@ abstract class Generator extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -134,7 +117,7 @@ abstract class Generator extends Model
      */
     public function stickyAttributes()
     {
-        return ['template', 'enableI18N','gallery', 'messageCategory'];
+        return ['template', 'enableI18N', 'messageCategory'];
     }
 
     /**
@@ -149,8 +132,6 @@ abstract class Generator extends Model
             'enableI18N' => 'This indicates whether the generator should generate strings using <code>Yii::t()</code> method.
                 Set this to <code>true</code> if you are planning to make your application translatable.',
             'messageCategory' => 'This is the category used by <code>Yii::t()</code> in case you enable I18N.',
-            'gallery' => 'Функиця сохранения галереи в модели',
-            'lang' => 'Языки перевода через запятую',
         ];
     }
 
@@ -210,7 +191,7 @@ abstract class Generator extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * Child classes should override this method like the following so that the parent
      * rules are included:
@@ -281,7 +262,7 @@ abstract class Generator extends Model
      * @param array $answers
      * @param string $results this parameter receives a value from this method indicating the log messages
      * generated while saving the code files.
-     * @return boolean whether files are successfully saved without any error.
+     * @return bool whether files are successfully saved without any error.
      */
     public function save($files, $answers, &$results)
     {
@@ -289,7 +270,7 @@ abstract class Generator extends Model
         $hasError = false;
         foreach ($files as $file) {
             $relativePath = $file->getRelativePath();
-            if (isset($answers[$file->id]) && $file->operation !== CodeFile::OP_SKIP) {
+            if (isset($answers[$file->id]) && !empty($answers[$file->id]) && $file->operation !== CodeFile::OP_SKIP) {
                 $error = $file->save();
                 if (is_string($error)) {
                     $hasError = true;
@@ -315,9 +296,9 @@ abstract class Generator extends Model
     {
         if (isset($this->templates[$this->template])) {
             return $this->templates[$this->template];
-        } else {
-            throw new InvalidConfigException("Unknown template: {$this->template}");
         }
+
+        throw new InvalidConfigException("Unknown template: {$this->template}");
     }
 
     /**
@@ -349,7 +330,7 @@ abstract class Generator extends Model
         } else {
             $templatePath = $this->templates[$this->template];
             foreach ($this->requiredTemplates() as $template) {
-                if (!is_file($templatePath . '/' . $template)) {
+                if (!is_file(Yii::getAlias($templatePath . '/' . $template))) {
                     $this->addError('template', "Unable to find the required code template file '$template'.");
                 }
             }
@@ -415,7 +396,7 @@ abstract class Generator extends Model
 
     /**
      * @param string $value the attribute to be validated
-     * @return boolean whether the value is a reserved PHP keyword.
+     * @return bool whether the value is a reserved PHP keyword.
      */
     public function isReservedKeyword($value)
     {

@@ -10,7 +10,7 @@ use common\helpers\LangHelper;
 
 $title = 'title_'.$lang;
 $text = 'text_'.$lang;
-$_title =LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING MISSIYASI", "COMPANY'S MISSION");
+$_title =LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING VAZIFASI", "COMPANY'S MISSION");
 $this->title = $_title;
 ?>
 
@@ -45,7 +45,7 @@ $this->title = $_title;
     <div class="centerBox">
         <a href="/" class="preload"><?=LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
         <a href="/about" class="preload"><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></a>
-        <a href="/about/missions" class="preload"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING MISSIYASI", "COMPANY'S MISSION"); ?></a>
+        <a href="/about/missions" class="preload"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING VAZIFASI", "COMPANY'S MISSION"); ?></a>
         <span><?=$mission->$title ?></span>
     </div>
 </div>

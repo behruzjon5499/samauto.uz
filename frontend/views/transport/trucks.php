@@ -8,7 +8,7 @@
 use common\helpers\LangHelper;
 
 $title = 'title_'.$lang;
-$_title =LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK MASHINALARI", "TRUCKS");;
+$_title =LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS");;
 $this->title = $_title;
 ?>
 
@@ -42,7 +42,7 @@ $this->title = $_title;
     <div class="centerBox">
         <a href="/" class="preload"><?=LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
         <a href="/transport" class="preload"><?=LangHelper::t("КАТЕГОРИИ МАШИН", "MASHINA KATEGORIYALARI", "MACHINE CATEGORIES"); ?></a>
-        <span><?=LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK MASHINALARI", "TRUCKS"); ?></span>
+        <span><?=LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS"); ?></span>
     </div>
 </div>
 

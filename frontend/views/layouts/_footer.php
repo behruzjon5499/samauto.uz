@@ -17,22 +17,22 @@ if($lang=='') $lang = 'ru';
             <div class="contactPage">
                 <ul>
                     <li class="ul_title"><a><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></a></li>
-                    <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING MISSIYASI", "COMPANY'S MISSION"); ?></a></li>
+                    <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING VAZIFASI", "COMPANY'S MISSION"); ?></a></li>
                     <li><a href="/about/history"><?=LangHelper::t("ИСТОРИЯ", "TARIXI", "HISTORY"); ?></a></li>
-                    <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></a></li>
+                    <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></a></li>
                     <li><a href="/about/documents"><?=LangHelper::t("ДОКУМЕНТЫ КОМПАНИИ", "KOMPANIYA HUJJATLARI", "COMPANY DOCUMENTS"); ?></a></li>
                     <li><a href="/about/vacancy"><?=LangHelper::t("КАРЬЕРА", "KARYERA", "CAREER"); ?></a></li>
                     <li><a href="/contacts"><?=LangHelper::t("КОНТАКТНАЯ ИНФОРМАЦИЯ", "ALOQA", "CONTACTS"); ?></a></li>
                     <li><a href="/news/archive"><?=LangHelper::t("НОВОСТИ", "YANGILIKLAR", "NEWS"); ?></a></li>
                 </ul>
                 <ul>
-                    <li class="ul_title"><a><?=LangHelper::t("МАШИНЫ", "MASHINALAR", "CARS"); ?></a></li>
+                    <li class="ul_title"><a><?=LangHelper::t("МАШИНЫ", "AVTOMOBILLAR", "CARS"); ?></a></li>
                     <li><a href="/transport/bus"><?=LangHelper::t("АВТОБУСЫ", "AVTOBUSLAR", "BUSES"); ?></a></li>
-                    <li><a href="/transport/trucks"><?=LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK MASHINALARI", "TRUCKS"); ?></a></li>
+                    <li><a href="/transport/trucks"><?=LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS"); ?></a></li>
                     <li><a href="/transport/special"><?=LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"); ?></a></li>
                     <li class="empty_li" style="opacity: 0!important; pointer-events: none!important;"><a href="#">a</a></li>
                     <li><a href="/dillers"><?=LangHelper::t("ДИЛЕРЫ", "DILERLAR", "DEALERS"); ?></a></li>
-                    <li><a href="/dillers"><?=LangHelper::t("ЗАПЧАСТИ", "EHTIYOT QISMLAR", "SPARE PARTS"); ?></a></li>
+                    <li><a href="/spare-parts"><?=LangHelper::t("ЗАПЧАСТИ", "EHTIYOT QISMLAR", "SPARE PARTS"); ?></a></li>
                     <li><a href="/localization"><?=LangHelper::t("ЛОКАЛИЗАЦИЯ", "JOYLASHTIRISH", "LOCALIZATION"); ?></a></li>
                 </ul>
                 <ul>
@@ -41,7 +41,7 @@ if($lang=='') $lang = 'ru';
                     <li><a href="/about/faq/2"><?=LangHelper::t("ЭКСПЛУАТАЦИЯ И ОБСЛУЖИВАНИЕ", "FOYDALANISH VA TEXNIK XIZMAT", "EXPLOITATION AND SERVICE"); ?></a></li>
                     <li><a href="/about/faq/3"><?=LangHelper::t("ДОКУМЕНТАЦИЯ", "HUJJATLAR", "DOCUMENTATION"); ?></a></li>
                     <div class="social-footer">
-                        <a href="<?=@$contacts['telegram'] ?>" target="_blank">
+                        <a href="<?=@$page['telegram'] ?>" target="_blank">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
                                             <g>
@@ -53,13 +53,13 @@ if($lang=='') $lang = 'ru';
                                             </g>
                                         </svg>
                         </a>
-                        <a href="<?=@$contacts['insta'] ?>" target="_blank">
+                        <a href="<?=@$page['insta'] ?>" target="_blank">
                             <svg viewBox="-21 -21 682.66669 682.66669" xmlns="http://www.w3.org/2000/svg">
                                 <path d="m0 132.976562v374.046876c0 73.441406 59.535156 132.976562 132.976562 132.976562h374.046876c73.441406 0 132.976562-59.535156 132.976562-132.976562v-374.046876c0-73.441406-59.535156-132.976562-132.976562-132.976562h-374.046876c-73.441406 0-132.976562 59.535156-132.976562 132.976562zm387.792969 368.359376c-157.855469 54.464843-303.59375-91.273438-249.128907-249.128907 18.351563-53.203125 60.335938-95.191406 113.539063-113.542969 157.859375-54.464843 303.597656 91.273438 249.132813 249.132813-18.351563 53.203125-60.335938 95.1875-113.542969 113.539063zm154.28125-374.859376c-2.511719 13.152344-13.394531 20.804688-24.652344 20.804688-6.851563 0-13.835937-2.828125-19.183594-8.964844-.472656-.542968-.914062-1.125-1.304687-1.730468-5.519532-8.4375-5.691406-18.460938-1-26.589844 3.320312-5.753906 8.679687-9.863282 15.097656-11.582032 6.410156-1.726562 13.113281-.839843 18.859375 2.484376 8.132813 4.6875 12.992187 13.457031 12.4375 23.511718-.039063.6875-.121094 1.386719-.253906 2.066406zm0 0" />
                                 <path d="m320 164.523438c-85.734375 0-155.476562 69.742187-155.476562 155.476562s69.742187 155.476562 155.476562 155.476562 155.476562-69.742187 155.476562-155.476562-69.742187-155.476562-155.476562-155.476562zm0 0" />
                             </svg>
                         </a>
-                        <a href="<?=@$contacts['facebook'] ?>" target="_blank">
+                        <a href="<?=@$page['facebook'] ?>" target="_blank">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="96.124px" height="96.123px" viewBox="0 0 96.124 96.123" style="enable-background:new 0 0 96.124 96.123;"
                                  xml:space="preserve">
@@ -71,7 +71,7 @@ if($lang=='') $lang = 'ru';
                                             </g>
                                         </svg>
                         </a>
-                        <a href="<?=@$contacts['youtube'] ?>" target="_blank">
+                        <a href="<?=@$page['youtube'] ?>" target="_blank">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="90px" height="90px" viewBox="0 0 90 90" style="enable-background:new 0 0 90 90;" xml:space="preserve">
                                             <g>
@@ -135,7 +135,7 @@ if($lang=='') $lang = 'ru';
     <div class="footer">
         <div class="flex_row_beet_cen medium_container">
             <div class="copyright">
-                <a href="#"><span>Developed by</span><img src="/images/logo-golden-minds.png" alt=""></a>
+                <a href="https://goldenminds.uz" target="_blank"><span>Разработка сайта</span><img src="/images/logo-golden-minds.png" alt=""></a>
                 <div>Copyright @ <?=LangHelper::t("Все права защищены", "Barcha huquqlar himoyalangan", "All rights reserved"); ?></div>
             </div>
             <div class="external_links">

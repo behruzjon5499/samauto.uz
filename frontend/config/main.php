@@ -65,21 +65,11 @@ return [
                 'get-history' => 'site/get-history',
                 'get-partners' => 'site/get-partners',
 
-                // 'captcha' => 'site/captcha',
                 'get-user' => 'site/get-user',
                 'search' => 'site/search',
 
-                /*'about/faq/<type>' => 'site/faq',
-                'about/faq'=>'site/faq', */
-
-                // доступные actions в siteController
                 '<action:(about|contacts|localization)>' => 'site/<action>',
-                /*'about/mission/<id>' => 'site/mission',
-                'about/missions' => 'site/missions',
-                'about/documents' => 'site/documents',
-                'about/history' => 'site/history',
-                'about/leadership' => 'site/leadership',
-                'about/vacancy' => 'site/vacancy',*/
+
                 'about/<action>' => 'site/<action>',
                 'about/<action>/<id>' => 'site/<action>',
 
@@ -125,15 +115,11 @@ return [
                 'send-comment' => 'products/send-comment',
                 'send-phone' => 'site/send-phone',
 
-                // 'catalog' => 'products/index', // товары
                 'projects' => 'projects/index', // список индивидуальных проектов
                 'projects/<link>' => 'projects/item', // индивидуальный проект
 
                 'sitemap' => 'site/sitemap',
 
-                //'actions/<link>' => 'actions/action', // любая акция
-
-                // '<action:\w+>/<id:\d+>' => 'site/<action>',
                 '<controller>/<action>/<id>' => '<controller>/<action>',
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>' => '<controller>/index',

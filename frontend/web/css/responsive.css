@@ -1,4 +1,5 @@
-full-page-definder@media(max-width: 1920px) {
+/*full-page-definder*/
+@media(max-width: 1920px) {
 	.about_company .boxes .item .wrap .title {font-size: 1.3vw;}
 	.mission .col-6 .item .left .num {font-size: 5.6vw;}
 	.site_bread .centerBox a, .site_bread .centerBox span {font-size: 0.9vw; /*padding: 0px 1.9vw;*/}
@@ -17,7 +18,10 @@ full-page-definder@media(max-width: 1920px) {
 	.fullpage_dots {margin-top: -115px;}
 	.fullpage_dots li {margin-bottom: 30px;}
 	.fullpage_header .search:hover input {width: 0px;}
-	.medium_container {width: 100%;}	
+	.medium_container {width: 100%;}
+	.canvasMap + .medium_container {
+		width: 100vw;
+	}
 	.dillers.section--3 .container {padding-top: 22vh; padding-bottom: 6vh;}
 	.localization .lists ul li a {font-size: 14px; max-width: 290px;}
 	
@@ -107,7 +111,6 @@ full-page-definder@media(max-width: 1920px) {
 	.last-section .scroll {
 		height: auto;
 	}
-	.contactPage .abs {padding-top: 100px;}
 	.mobPadd {padding-top: 155px;}
 	.breadPadding {padding-bottom: 155px;}
 	.full-page-definder {display: none;}
@@ -196,7 +199,7 @@ full-page-definder@media(max-width: 1920px) {
 	.dillers.section--3 {padding-bottom: 10vh;}
 	.dillers:not(.section--3) {padding-bottom: 145px;}
 
-	.dillers:not(.section--3) .container,
+	/*.dillers:not(.section--3) .container*/,
 	.dillers.section--3 .container {
 	    display: block;
 	    width: 50%;
@@ -400,6 +403,12 @@ full-page-definder@media(max-width: 1920px) {
 	.footer .medium_container {
 		flex-wrap: wrap;
 	}
+    .stocks .boxes .item .caption {
+        display: block;
+    }
+    .stocks .boxes .item .end-date {
+        margin-top: 15px;
+    }
 }
 @media(max-width: 960px) {
 	.fullpage_header .leftBox {width: auto; min-width: auto;}
@@ -463,6 +472,9 @@ full-page-definder@media(max-width: 1920px) {
 
 	.contact_page.dillerInside .mTitle span {margin-bottom: 6px;}
 	.site_modal.partModal .wrap .options .option {width: 50%;}
+    .stocks .boxes .item {
+        width: 100%;
+    }
 }
 @media(max-width: 900px) {
 	.about_company .boxes .item {width: 50%;}
@@ -593,6 +605,13 @@ full-page-definder@media(max-width: 1920px) {
 	.leaders_page--ul {width: 100%; max-width: 100%; padding-right: 0;}
 	.ajax-leader-wrap {width: 100%; max-width: 100%; margin-top: 40px;}
 	.leaders_page .big_item {margin: 0 auto;}
+    .stock-item .mTitle {
+        flex: none;
+        width: 100%;
+    }
+    .localization._category .wrapper .item {
+        width: 33.33333%;
+    }
 }
 @media(max-width: 650px){
 	.fullpage_menu .downloads {
@@ -705,13 +724,30 @@ full-page-definder@media(max-width: 1920px) {
 	}
 }
 @media(max-height: 650px) {
-	.fullpage_menu a {font-size: 26px;}
-}
+	.fullpage_menu a {font-size: 26px;}  }
 /* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+@media(max-width: 650px) {
+    .main-example .count {
+        font-size: 15px;
+        line-height: 32px;
+    }
+    .main-example .time {
+        width: 35px;
+        height: 35px;
+    }
+    .main-example .label {
+        top: 33px;
+    }
+
+}
 
 @media(max-width: 500px) {
 	.about_company .boxes .item {width: 100%;}
 	.small_container, .fullpage_header, .medium_container, .footer, .very_small_container {padding-left: 20px; padding-right: 20px;}
+	.dillers .canvasMap + .medium_container {
+		padding: 0;
+	}
 	.footer {text-align: center; flex-direction: column;}
 	.footer .copyright {order: 3; margin-top: 15px;}
 	.footer .uzb {order: 1;}
@@ -815,6 +851,9 @@ full-page-definder@media(max-width: 1920px) {
 		font-size: 14px;
 		line-height: 20px;
 	}
+    .localization._category .wrapper .item {
+        width: 50%;
+    }
 }
 @media(max-width: 450px){
 	.modalPartner .head {display: block; text-align: center;}
@@ -828,5 +867,11 @@ full-page-definder@media(max-width: 1920px) {
 	.modalPartner .info-row .wr > div {
 	    justify-content: center;
     	text-align: center;
+	}
+	.modalStock .stock-item {
+		max-width: 95%;
+	}
+	.modalStock .countdown-container {
+		margin-left: 20px;
 	}
 }

@@ -35,6 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     return  $model->status ? '<span class="label label-success">Вкл.</span>' : '<span class="label label-danger">Откл.</span>';
                 }
             ],
+            [   'attribute' => 'hit',
+                'filter'=> ['1' => 'Вкл.', '0' => 'Откл.',],
+                'content'=>function($model){
+                    return  $model->hit ? '<span class="label label-success">Вкл.</span>' : '<span class="label label-danger">Откл.</span>';
+                }
+            ],
             'date:date',
             //'views',
             //'link',

@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use frontend\assets\MainAsset;
 //use common\widgets\Alert;
 use common\helpers\LangHelper;
+use yii\web\View;
 
 if( Yii::$app->controller->id=='site' && Yii::$app->controller->action->id=='index'  ){
     MainAsset::register($this);

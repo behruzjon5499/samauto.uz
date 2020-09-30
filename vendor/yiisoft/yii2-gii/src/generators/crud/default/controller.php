@@ -39,22 +39,22 @@ use yii\data\ActiveDataProvider;
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-<?php if($generator->gallery){ ?>
-use common\models\Images;
-<?php } ?>
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  */
 class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -85,6 +85,18 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
 <?php endif; ?>
     }
 
+    /**
+     * Displays a single <?= $modelClass ?> model.
+     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView(<?= $actionParams ?>)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel(<?= $actionParams ?>),
+        ]);
+    }
 
     /**
      * Creates a new <?= $modelClass ?> model.
@@ -95,13 +107,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $model = new <?= $modelClass ?>();
 
-        if ($model->updateModel(true)) {
-            return $this->redirect(['update', <?= $urlParams ?>]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', <?= $urlParams ?>]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -109,28 +121,19 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      * If update is successful, the browser will be redirected to the 'view' page.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate(<?= $actionParams ?>)
     {
         $model = $this->findModel(<?= $actionParams ?>);
 
-        if ($model->updateModel()) {
-            return $this->redirect(['update', <?= $urlParams ?>]);
-        } else {
-
-        <?php if($generator->gallery){ ?>
-            if(!$gallery = Images::find()->where(['product_id'=>$model->id])->all() ){
-                $gallery = false;
-            }
-        <?php } ?>
-
-            return $this->render('update', [
-                'model' => $model,
-                <?php if($generator->gallery){ ?>
-                'gallery' => $gallery,
-                <?php } ?>
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', <?= $urlParams ?>]);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -138,6 +141,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete(<?= $actionParams ?>)
     {
@@ -168,34 +172,8 @@ if (count($pks) === 1) {
 ?>
         if (($model = <?= $modelClass ?>::findOne(<?= $condition ?>)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-
-    <?php if($generator->gallery){ // функция удаления из галереи ?>
-
-    // удаление изображения из галереи
-    public function actionDeleteGalleryItem()
-    {
-        $id = (int)Yii::$app->request->post('id');
-        if($gallery = Gallery::findOne($id)){
-            $path = Yii::getAlias("@frontend/web/uploads/<?=mb_strtolower($modelClass) ?>/" . $id . '/gallery/' );
-
-            @unlink($path . $gallery->image);
-            @unlink($path . 'thumb/'. $gallery->image);
-
-            $gallery->delete();
-
-            return json_encode(['status'=>1]);
         }
 
-        return json_encode(['status'=>0]);
+        throw new NotFoundHttpException(<?= $generator->generateString('The requested page does not exist.') ?>);
     }
-
-    <?php } ?>
-
-
-
 }

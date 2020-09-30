@@ -71,7 +71,7 @@ $this->title =LangHelper::t("ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ", "K
 <div class="site_bread">
     <div class="centerBox"><a href="/"><?=LangHelper::t("ГЛАВНАЯ", "ASOSIY SAHIFA", "HOME"); ?></a>
         <a href="/about"><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></a>
-        <a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></a>
+        <a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></a>
         <span><?=LangHelper::t("ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ", "KO'P SO'RALADIGAN SAVOLLAR", "FAQ"); ?></span>
     </div>
 </div>

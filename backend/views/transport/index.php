@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'image',
                 'content'=>function($data){
-                    return '<img width="150px" src="/frontend/web/uploads/transport/'.$data->id.'/thumb/'.$data->image.'">';
+                    return '<img width="150px" src="/uploads/transport/'.$data->id.'/thumb/'.$data->image.'">';
                 }
             ],
             // 'id',
@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $_type[0] = 'Автобус';
                     $_type[1] = 'Грузовики';
                     $_type[2] = 'Спецтехника';
+                    $_type[3] = 'Пикапы';
                     return $_type[$data->type];
                 }
             ],
@@ -67,4 +68,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-</div>
+ </div>
+
+

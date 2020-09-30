@@ -16,9 +16,9 @@ use common\helpers\LangHelper;
             <li class="expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div>
                 <span><?=LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT COMPANY"); ?></span>
                 <ul>
-                    <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING MISSIYASI", "COMPANY'S MISSION"); ?></a></li>
+                    <li><a href="/about/missions"><?=LangHelper::t("МИССИЯ КОМПАНИИ", "KOMPANIYANING VAZIFASI", "COMPANY'S MISSION"); ?></a></li>
                     <li><a href="/about/history"><?=LangHelper::t("ИСТОРИЯ", "TARIXI", "HISTORY"); ?></a></li>
-                    <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></a></li>
+                    <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></a></li>
                     <li><a href="/about/documents"><?=LangHelper::t("ДОКУМЕНТЫ КОМПАНИИ", "KOMPANIYA HUJJATLARI", "COMPANY DOCUMENTS"); ?></a></li>
                     <li><a href="/about/vacancy"><?=LangHelper::t("КАРЬЕРА", "KARYERA", "CAREER"); ?></a></li>
                     <li class="last"><a href="/contacts"><?=LangHelper::t("КОНТАКТНАЯ ИНФОРМАЦИЯ", "ALOQA", "CONTACTS"); ?></a></li>

@@ -294,7 +294,7 @@ class DbManager extends BaseManager
     {
         if (!$this->supportsCascadeUpdate()) {
             $this->db->createCommand()
-                ->delete($this->itemChildTable, ['or', '[[parent]]=:name', '[[child]]=:name'], [':name' => $item->name])
+                ->delete($this->itemChildTable, ['or', '[[parent]]=:parent', '[[child]]=:child'], [':parent' => $item->name, ':child' => $item->name])
                 ->execute();
             $this->db->createCommand()
                 ->delete($this->assignmentTable, ['item_name' => $item->name])
@@ -451,7 +451,7 @@ class DbManager extends BaseManager
             'name' => $row['name'],
             'type' => $row['type'],
             'description' => $row['description'],
-            'ruleName' => $row['rule_name'],
+            'ruleName' => $row['rule_name'] ?: null,
             'data' => $data,
             'createdAt' => $row['created_at'],
             'updatedAt' => $row['updated_at'],
@@ -1046,8 +1046,9 @@ class DbManager extends BaseManager
      * Check whether $userId is empty.
      * @param mixed $userId
      * @return bool
+     * @since 2.0.26
      */
-    private function isEmptyUserId($userId)
+    protected function isEmptyUserId($userId)
     {
         return !isset($userId) || $userId === '';
     }

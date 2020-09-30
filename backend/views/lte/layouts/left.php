@@ -72,6 +72,27 @@ if( ! Yii::$app->user->isGuest || @Yii::$app->user->identity->role ==9) { ?>
                             ['label' => 'Контакты', 'icon' => 'fa fa-file-o', 'url' => ['/pages/contacts']],
                         ]
                     ],
+                ['label' => 'Пикапы',
+                    'icon' => 'fa fa-clone',
+                    'url' => '#',
+                    'items' => [
+                        // ['label' => 'Главная', 'icon' => 'fa fa-file-o', 'url' => ['/pages/main']],
+                        // ['label' => 'О нас', 'icon' => 'fa fa-file-o', 'url' => ['/pages/about']],
+                        ['label' => 'Страница галерея', 'icon' => 'fa fa-file-o', 'url' => ['/irbis-gallery']],
+                        ['label' => 'Страница пикапов', 'icon' => 'fa fa-file-o', 'url' => ['/pikups-page']],
+                        ['label' => 'Таб-панели', 'icon' => 'fa fa-file-o', 'url' => ['/tab-panel']],
+                    ]
+                ],
+//                ['label' => 'Вакансии',
+//                    'icon' => 'fa fa-user',
+//                    'url' => '#',
+//                    'items' => [
+//                        ['label' => 'Категорий вакансии', 'icon' => 'fa fa-address-book-o', 'url' => ['/vacancy-categories']],
+//                        ['label' => 'Вакансии', 'icon' => 'fa fa-address-book-o', 'url' => ['/vacancy']],
+//                        ['label' => 'Vacancy Request', 'icon' => 'fa fa-address-book-o', 'url' => ['/vacancy-request']],
+//                        ['label' => 'Oтправленные друзьям', 'icon' => 'fa fa-address-book-o', 'url' => ['/vacancy-send']],
+//                    ]
+//                ],
 //                    ['label' => 'Справочники',
 //                        'icon' => 'fa fa-list',
 //                        'url' => '#',

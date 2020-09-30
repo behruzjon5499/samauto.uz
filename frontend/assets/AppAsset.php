@@ -20,7 +20,6 @@ class AppAsset extends AssetBundle
         'css/shared.css',
         'css/style.css',
         'css/responsive.css',
-
     ];
     public $js = [
         'js/jquery-3.2.1.min.js',

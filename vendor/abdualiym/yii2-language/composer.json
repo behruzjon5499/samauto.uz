@@ -1,0 +1,27 @@
+{
+  "name": "abdualiym/yii2-language",
+  "description": "Yii2 language extension",
+  "keywords": [
+    "yii2",
+    "framework",
+    "advanced",
+    "slider",
+    "blocks",
+    "cms"
+  ],
+  "homepage": "https://www.github.com/",
+  "type": "yii2-extension",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Olimjon Aripdjanov",
+      "email": "a.abdualiym@gmail.com",
+      "homepage": "https://sayti.uz"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "abdualiym\\language\\": ""
+    }
+  }
+}

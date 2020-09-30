@@ -43,7 +43,7 @@ $this->title = 'Страница Контакты';
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_11">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[sam_address_ru]" class="form-control" value="<?=@$data['sam_address_ru']?>">
+                                <input type="text" name="pages[sam_address_ru]" class="form-control" value="<?=Html::encode(@$data['sam_address_ru'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[sam_phone1_ru]" class="form-control" value="<?=@$data['sam_phone1_ru']?>">
                                 <label>Телефон 2</label>
@@ -57,7 +57,7 @@ $this->title = 'Страница Контакты';
                             </div>
                             <div class="tab-pane" id="tab_12">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[sam_address_uz]" class="form-control" value="<?=@$data['sam_address_uz']?>">
+                                <input type="text" name="pages[sam_address_uz]" class="form-control" value="<?=Html::encode(@$data['sam_address_uz'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[sam_phone1_uz]" class="form-control" value="<?=@$data['sam_phone1_uz']?>">
                                 <label>Телефон 2</label>
@@ -71,7 +71,7 @@ $this->title = 'Страница Контакты';
                             </div>
                             <div class="tab-pane" id="tab_13">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[sam_address_en]" class="form-control" value="<?=@$data['sam_address_en']?>">
+                                <input type="text" name="pages[sam_address_en]" class="form-control" value="<?=Html::encode(@$data['sam_address_en'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[sam_phone1_en]" class="form-control" value="<?=@$data['sam_phone1_en']?>">
                                 <label>Телефон 2</label>
@@ -105,7 +105,7 @@ $this->title = 'Страница Контакты';
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_14">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[tash_address_ru]" class="form-control" value="<?=@$data['tash_address_ru']?>">
+                                <input type="text" name="pages[tash_address_ru]" class="form-control" value="<?=Html::encode(@$data['tash_address_ru'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[tash_phone1_ru]" class="form-control" value="<?=@$data['tash_phone1_ru']?>">
                                 <label>Телефон 2</label>
@@ -119,7 +119,7 @@ $this->title = 'Страница Контакты';
                             </div>
                             <div class="tab-pane" id="tab_15">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[tash_address_uz]" class="form-control" value="<?=@$data['tash_address_uz']?>">
+                                <input type="text" name="pages[tash_address_uz]" class="form-control" value="<?=Html::encode(@$data['tash_address_uz'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[tash_phone1_uz]" class="form-control" value="<?=@$data['tash_phone1_uz']?>">
                                 <label>Телефон 2</label>
@@ -133,7 +133,7 @@ $this->title = 'Страница Контакты';
                             </div>
                             <div class="tab-pane" id="tab_16">
                                 <label>Адрес</label>
-                                <input type="text" name="pages[tash_address_en]" class="form-control" value="<?=@$data['tash_address_en']?>">
+                                <input type="text" name="pages[tash_address_en]" class="form-control" value="<?=Html::encode(@$data['tash_address_en'])?>">
                                 <label>Телефон 1</label>
                                 <input name="pages[tash_phone1_en]" class="form-control" value="<?=@$data['tash_phone1_en']?>">
                                 <label>Телефон 2</label>

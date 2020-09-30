@@ -51,7 +51,7 @@ $this->title =LangHelper::t("О КОМПАНИИ", "KOMPANIYA HAQIDA", "ABOUT CO
                         </div>
                         <div class="left">
                             <div class="num"></div>
-                            <span><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARMASI", "COMPANY MANAGEMENT"); ?></span>
+                            <span><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></span>
                         </div>
                     </a>
                 </div>

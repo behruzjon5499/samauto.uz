@@ -28,13 +28,16 @@ use yii\web\JsExpression;
  */
 class BaseController extends Controller{
 	public $access = ['@'];
+	public $user = 'user';
 	public $managerOptions = [];
 	public $connectOptions = [];
+	public $plugin = [];
 
 	public function behaviors()
 	{
 		return [
 			'access' => [
+				'user' => $this->user,
 				'class' => AccessControl::className(),
 				'rules' => [
 					[
@@ -51,7 +54,7 @@ class BaseController extends Controller{
 	}
 
 	public function actionConnect(){
-		return $this->renderFile(__DIR__."/views/connect.php", ['options'=>$this->getOptions()]);
+		return $this->renderFile(__DIR__."/views/connect.php", ['options'=>$this->getOptions(), 'plugin' => $this->plugin]);
 	}
 
 	public function getManagerOptions(){
@@ -92,7 +95,7 @@ class BaseController extends Controller{
 		}
 
 		if(!isset($options['lang']))
-			$options['lang'] = Yii::$app->language;
+			$options['lang'] = ElFinder::getSupportedLanguage(Yii::$app->language);
 
 		if(!empty($this->disabledCommands))
 			$options['commands'] = new JsExpression('ElFinderGetCommands('.Json::encode($this->disabledCommands).')');

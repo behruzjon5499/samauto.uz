@@ -3,8 +3,9 @@ AddDefaultCharset UTF-8
 Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
-
-# Заголовок Cache-Control
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+ # Заголовок Cache-Control
 <IfModule mod_headers.c>
        Header append Cache-Control "no-store, no-cache, must-revalidate"
 </IfModule>
@@ -14,6 +15,7 @@ RewriteEngine on
        ExpiresActive On ExpiresDefault "now"
 </IfModule>
 
+# Если запрос начинается с /ts, то заменяем на
 # Если запрос начинается с /admin, то заменяем на /backend/web/
 RewriteCond %{REQUEST_URI} ^/admin
 RewriteRule ^admin\/?(.*) /backend/web/$1
@@ -29,7 +31,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /frontend/web/index.php
  
 # Если backend запрос
-RewriteCond %{REQUEST_URI} ^/backend/web
+#RewriteCond %{REQUEST_URI} ^/backend/web
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /backend/web/index.php

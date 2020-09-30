@@ -59,7 +59,7 @@ class Transport extends \yii\db\ActiveRecord
             [['category_id','pos'], 'integer'],
             [['data','model'], 'string'],
             [['status'], 'integer', 'max' => 1],
-            [['type'], 'integer', 'max' => 2],
+            [['type'], 'integer', 'max' => 3],
             [['type_id', 'title_ru', 'title_uz', 'title_en'], 'string', 'max' => 128],
             [['file_title_ru','file_title_uz','file_title_en'], 'string', 'max' => 255],
             [['image'], 'string', 'max' => 16]

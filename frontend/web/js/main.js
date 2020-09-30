@@ -235,6 +235,12 @@ $(document).ready(function () {
                 {
                     breakpoint: 768,
                     settings: {
+                        draggable: false,
+                        swipe: false,
+                        swipeToSlide: false,
+                        touchMove: false,
+                        draggable: false,
+                        accessibility: false,
                         adaptiveHeight: true,
                     }
                 }

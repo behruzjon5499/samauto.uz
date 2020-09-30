@@ -106,8 +106,7 @@ var CKBUILDER_CONFIG = {
 		'toolbar' : 1,
 		'undo' : 1,
 		'wsc' : 1,
-		'wysiwygarea' : 1,
-		'slider' : 1
+		'wysiwygarea' : 1
 	},
 	languages : {
 		'af' : 1,

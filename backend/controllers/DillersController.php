@@ -56,7 +56,9 @@ class DillersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Dillers();
+        $model = new Dillers([
+            'file_cert' => ''
+        ]);
 
         if ($model->updateModel(true)) {
             return $this->redirect(['update', 'id' => $model->id]);
@@ -100,7 +102,7 @@ class DillersController extends Controller
         if($model = Dillers::find()->with(['office','services'])->where(['id'=>$id])->one()){
 
 
-            if( count($model->office) > 0 ){
+            if( @count($model->office) > 0 ){
                 Yii::$app->session->setFlash('info','У дилера имеются офисы, необходимо сначала их удалить!');
                 return $this->redirect(['index']);
             }

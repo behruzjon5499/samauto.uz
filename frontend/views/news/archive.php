@@ -40,8 +40,9 @@ $this->title =LangHelper::t("АРХИВ НОВОСТЕЙ", "YANGILIKLAR ARXIVI",
                             <span class="title"><?= $item->$title ?></span>
                             <span class="day"><?= date('d.m.Y', $item->date) ?></span>
                         </div>
+
                     </div>
-                </a>
+                       </a>
 
             <?php }
         } ?>

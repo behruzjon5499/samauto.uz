@@ -22,8 +22,9 @@ use yii\web\Controller;
  * @property array $columnNames Model column names. This property is read-only.
  * @property string $controllerID The controller ID (without the module ID prefix). This property is
  * read-only.
+ * @property string $nameAttribute This property is read-only.
  * @property array $searchAttributes Searchable attributes. This property is read-only.
- * @property boolean|\yii\db\TableSchema $tableSchema This property is read-only.
+ * @property bool|\yii\db\TableSchema $tableSchema This property is read-only.
  * @property string $viewPath The controller view path. This property is read-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -37,11 +38,20 @@ class Generator extends \yii\gii\Generator
     public $baseControllerClass = 'yii\web\Controller';
     public $indexWidgetType = 'grid';
     public $searchModelClass = '';
-    public $lang;
+    /**
+     * @var bool whether to wrap the `GridView` or `ListView` widget with the `yii\widgets\Pjax` widget
+     * @since 2.0.5
+     */
+    public $enablePjax = false;
+    /**
+     * @var bool whether to use strict inflection for controller IDs (insert a separator between two consecutive uppercase chars)
+     * @since 2.1.0
+     */
+    public $strictInflector = true;
 
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -49,7 +59,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getDescription()
     {
@@ -58,7 +68,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -74,15 +84,14 @@ class Generator extends \yii\gii\Generator
             [['controllerClass', 'searchModelClass'], 'validateNewClass'],
             [['indexWidgetType'], 'in', 'range' => ['grid', 'list']],
             [['modelClass'], 'validateModelClass'],
-            [['enableI18N','gallery'], 'boolean'],
-            [['lang'], 'string'],
+            [['enableI18N', 'enablePjax'], 'boolean'],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
             ['viewPath', 'safe'],
         ]);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
@@ -93,11 +102,12 @@ class Generator extends \yii\gii\Generator
             'baseControllerClass' => 'Base Controller Class',
             'indexWidgetType' => 'Widget Used in Index Page',
             'searchModelClass' => 'Search Model Class',
+            'enablePjax' => 'Enable Pjax',
         ]);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function hints()
     {
@@ -109,7 +119,7 @@ class Generator extends \yii\gii\Generator
                 and class name should be in CamelCase with an uppercase first letter. Make sure the class
                 is using the same namespace as specified by your application\'s controllerNamespace property.',
             'viewPath' => 'Specify the directory for storing the view scripts for the controller. You may use path alias here, e.g.,
-                <code>/var/www/basic/controllers/views/post</code>, <code>@app/views/post</code>, <code>@backend/views/post</code>. If not set, it will default
+                <code>/var/www/basic/controllers/views/post</code>, <code>@app/views/post</code>. If not set, it will default
                 to <code>@app/views/ControllerID</code>',
             'baseControllerClass' => 'This is the class that the new CRUD controller class will extend from.
                 You should provide a fully qualified class name, e.g., <code>yii\web\Controller</code>.',
@@ -117,11 +127,14 @@ class Generator extends \yii\gii\Generator
                 You may choose either <code>GridView</code> or <code>ListView</code>',
             'searchModelClass' => 'This is the name of the search model class to be generated. You should provide a fully
                 qualified namespaced class name, e.g., <code>app\models\PostSearch</code>.',
+            'enablePjax' => 'This indicates whether the generator should wrap the <code>GridView</code> or <code>ListView</code>
+                widget on the index page with <code>yii\widgets\Pjax</code> widget. Set this to <code>true</code> if you want to get
+                sorting, filtering and pagination without page refreshing.',
         ]);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function requiredTemplates()
     {
@@ -129,7 +142,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function stickyAttributes()
     {
@@ -150,7 +163,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function generate()
     {
@@ -187,7 +200,7 @@ class Generator extends \yii\gii\Generator
         $pos = strrpos($this->controllerClass, '\\');
         $class = substr(substr($this->controllerClass, $pos + 1), 0, -10);
 
-        return Inflector::camel2id($class);
+        return Inflector::camel2id($class, '-', $this->strictInflector);
     }
 
     /**
@@ -197,11 +210,14 @@ class Generator extends \yii\gii\Generator
     {
         if (empty($this->viewPath)) {
             return Yii::getAlias('@app/views/' . $this->getControllerID());
-        } else {
-            return Yii::getAlias($this->viewPath);
         }
+
+        return Yii::getAlias(str_replace('\\', '/', $this->viewPath));
     }
 
+    /**
+     * @return string
+     */
     public function getNameAttribute()
     {
         foreach ($this->getColumnNames() as $name) {
@@ -227,34 +243,39 @@ class Generator extends \yii\gii\Generator
         if ($tableSchema === false || !isset($tableSchema->columns[$attribute])) {
             if (preg_match('/^(password|pass|passwd|passcode)$/i', $attribute)) {
                 return "\$form->field(\$model, '$attribute')->passwordInput()";
-            } else {
-                return "\$form->field(\$model, '$attribute')";
             }
+
+            return "\$form->field(\$model, '$attribute')";
         }
         $column = $tableSchema->columns[$attribute];
         if ($column->phpType === 'boolean') {
             return "\$form->field(\$model, '$attribute')->checkbox()";
-        } elseif ($column->type === 'text') {
-            return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
-        } else {
-            if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
-                $input = 'passwordInput';
-            } else {
-                $input = 'textInput';
-            }
-            if (is_array($column->enumValues) && count($column->enumValues) > 0) {
-                $dropDownOptions = [];
-                foreach ($column->enumValues as $enumValue) {
-                    $dropDownOptions[$enumValue] = Inflector::humanize($enumValue);
-                }
-                return "\$form->field(\$model, '$attribute')->dropDownList("
-                    . preg_replace("/\n\s*/", ' ', VarDumper::export($dropDownOptions)).", ['prompt' => ''])";
-            } elseif ($column->phpType !== 'string' || $column->size === null) {
-                return "\$form->field(\$model, '$attribute')->$input()";
-            } else {
-                return "\$form->field(\$model, '$attribute')->$input(['maxlength' => true])";
-            }
         }
+
+        if ($column->type === 'text') {
+            return "\$form->field(\$model, '$attribute')->textarea(['rows' => 6])";
+        }
+
+        if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
+            $input = 'passwordInput';
+        } else {
+            $input = 'textInput';
+        }
+
+        if (is_array($column->enumValues) && count($column->enumValues) > 0) {
+            $dropDownOptions = [];
+            foreach ($column->enumValues as $enumValue) {
+                $dropDownOptions[$enumValue] = Inflector::humanize($enumValue);
+            }
+            return "\$form->field(\$model, '$attribute')->dropDownList("
+                . preg_replace("/\n\s*/", ' ', VarDumper::export($dropDownOptions)).", ['prompt' => ''])";
+        }
+
+        if ($column->phpType !== 'string' || $column->size === null) {
+            return "\$form->field(\$model, '$attribute')->$input()";
+        }
+
+        return "\$form->field(\$model, '$attribute')->$input(['maxlength' => true])";
     }
 
     /**
@@ -268,12 +289,13 @@ class Generator extends \yii\gii\Generator
         if ($tableSchema === false) {
             return "\$form->field(\$model, '$attribute')";
         }
+
         $column = $tableSchema->columns[$attribute];
         if ($column->phpType === 'boolean') {
             return "\$form->field(\$model, '$attribute')->checkbox()";
-        } else {
-            return "\$form->field(\$model, '$attribute')";
         }
+
+        return "\$form->field(\$model, '$attribute')";
     }
 
     /**
@@ -285,17 +307,25 @@ class Generator extends \yii\gii\Generator
     {
         if ($column->phpType === 'boolean') {
             return 'boolean';
-        } elseif ($column->type === 'text') {
-            return 'ntext';
-        } elseif (stripos($column->name, 'time') !== false && $column->phpType === 'integer') {
-            return 'datetime';
-        } elseif (stripos($column->name, 'email') !== false) {
-            return 'email';
-        } elseif (stripos($column->name, 'url') !== false) {
-            return 'url';
-        } else {
-            return 'text';
         }
+
+        if ($column->type === 'text') {
+            return 'ntext';
+        }
+
+        if (stripos($column->name, 'time') !== false && $column->phpType === 'integer') {
+            return 'datetime';
+        }
+
+        if (stripos($column->name, 'email') !== false) {
+            return 'email';
+        }
+
+        if (preg_match('/(\b|[_-])url(\b|[_-])/i', $column->name)) {
+            return 'url';
+        }
+
+        return 'text';
     }
 
     /**
@@ -310,6 +340,7 @@ class Generator extends \yii\gii\Generator
         $types = [];
         foreach ($table->columns as $column) {
             switch ($column->type) {
+                case Schema::TYPE_TINYINT:
                 case Schema::TYPE_SMALLINT:
                 case Schema::TYPE_INTEGER:
                 case Schema::TYPE_BIGINT:
@@ -403,6 +434,7 @@ class Generator extends \yii\gii\Generator
         $hashConditions = [];
         foreach ($columns as $column => $type) {
             switch ($type) {
+                case Schema::TYPE_TINYINT:
                 case Schema::TYPE_SMALLINT:
                 case Schema::TYPE_INTEGER:
                 case Schema::TYPE_BIGINT:
@@ -418,7 +450,8 @@ class Generator extends \yii\gii\Generator
                     $hashConditions[] = "'{$column}' => \$this->{$column},";
                     break;
                 default:
-                    $likeConditions[] = "->andFilterWhere(['like', '{$column}', \$this->{$column}])";
+                    $likeKeyword = $this->getClassDbDriverName() === 'pgsql' ? 'ilike' : 'like';
+                    $likeConditions[] = "->andFilterWhere(['{$likeKeyword}', '{$column}', \$this->{$column}])";                    
                     break;
             }
         }
@@ -448,21 +481,21 @@ class Generator extends \yii\gii\Generator
         if (count($pks) === 1) {
             if (is_subclass_of($class, 'yii\mongodb\ActiveRecord')) {
                 return "'id' => (string)\$model->{$pks[0]}";
-            } else {
-                return "'id' => \$model->{$pks[0]}";
-            }
-        } else {
-            $params = [];
-            foreach ($pks as $pk) {
-                if (is_subclass_of($class, 'yii\mongodb\ActiveRecord')) {
-                    $params[] = "'$pk' => (string)\$model->$pk";
-                } else {
-                    $params[] = "'$pk' => \$model->$pk";
-                }
             }
 
-            return implode(', ', $params);
+            return "'id' => \$model->{$pks[0]}";
         }
+
+        $params = [];
+        foreach ($pks as $pk) {
+            if (is_subclass_of($class, 'yii\mongodb\ActiveRecord')) {
+                $params[] = "'$pk' => (string)\$model->$pk";
+            } else {
+                $params[] = "'$pk' => \$model->$pk";
+            }
+        }
+
+        return implode(', ', $params);
     }
 
     /**
@@ -476,9 +509,9 @@ class Generator extends \yii\gii\Generator
         $pks = $class::primaryKey();
         if (count($pks) === 1) {
             return '$id';
-        } else {
-            return '$' . implode(', $', $pks);
         }
+
+        return '$' . implode(', $', $pks);
     }
 
     /**
@@ -493,26 +526,26 @@ class Generator extends \yii\gii\Generator
         if (($table = $this->getTableSchema()) === false) {
             $params = [];
             foreach ($pks as $pk) {
-                $params[] = '@param ' . (substr(strtolower($pk), -2) == 'id' ? 'integer' : 'string') . ' $' . $pk;
+                $params[] = '@param ' . (strtolower(substr($pk, -2)) === 'id' ? 'integer' : 'string') . ' $' . $pk;
             }
 
             return $params;
         }
         if (count($pks) === 1) {
             return ['@param ' . $table->columns[$pks[0]]->phpType . ' $id'];
-        } else {
-            $params = [];
-            foreach ($pks as $pk) {
-                $params[] = '@param ' . $table->columns[$pk]->phpType . ' $' . $pk;
-            }
-
-            return $params;
         }
+
+        $params = [];
+        foreach ($pks as $pk) {
+            $params[] = '@param ' . $table->columns[$pk]->phpType . ' $' . $pk;
+        }
+
+        return $params;
     }
 
     /**
      * Returns table schema for current model class or false if it is not an active record
-     * @return boolean|\yii\db\TableSchema
+     * @return bool|\yii\db\TableSchema
      */
     public function getTableSchema()
     {
@@ -520,9 +553,9 @@ class Generator extends \yii\gii\Generator
         $class = $this->modelClass;
         if (is_subclass_of($class, 'yii\db\ActiveRecord')) {
             return $class::getTableSchema();
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -534,11 +567,24 @@ class Generator extends \yii\gii\Generator
         $class = $this->modelClass;
         if (is_subclass_of($class, 'yii\db\ActiveRecord')) {
             return $class::getTableSchema()->getColumnNames();
-        } else {
-            /* @var $model \yii\base\Model */
-            $model = new $class();
-
-            return $model->attributes();
         }
+
+        /* @var $model \yii\base\Model */
+        $model = new $class();
+
+        return $model->attributes();
+    }
+
+    /**
+     * @return string|null driver name of modelClass db connection.
+     * In case db is not instance of \yii\db\Connection null will be returned.
+     * @since 2.0.6
+     */
+    protected function getClassDbDriverName()
+    {
+        /* @var $class ActiveRecord */
+        $class = $this->modelClass;
+        $db = $class::getDb();
+        return $db instanceof \yii\db\Connection ? $db->driverName : null;
     }
 }

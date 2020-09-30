@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'attribute'=>'image',
             'content'=>function($data){
-                return '<img width="150px" src="/frontend/web/uploads/dillers/'.$data->id.'/thumb/'.$data->image.'">';
+                return '<img width="150px" src="/uploads/dillers/'.$data->id.'/thumb/'.$data->image.'">';
             }
             ],
             'title_ru',
