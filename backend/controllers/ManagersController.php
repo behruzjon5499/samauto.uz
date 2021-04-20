@@ -51,7 +51,7 @@ class ManagersController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->searchAdmins(Yii::$app->request->queryParams);
-
+        $dataProvider->query->andWhere(['<>','id',2]);
         return $this->render('@backend/views/user/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

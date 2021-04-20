@@ -81,6 +81,7 @@ if( ! Yii::$app->user->isGuest || @Yii::$app->user->identity->role ==9) { ?>
                         ['label' => 'Страница галерея', 'icon' => 'fa fa-file-o', 'url' => ['/irbis-gallery']],
                         ['label' => 'Страница пикапов', 'icon' => 'fa fa-file-o', 'url' => ['/pikups-page']],
                         ['label' => 'Таб-панели', 'icon' => 'fa fa-file-o', 'url' => ['/tab-panel']],
+                        ['label' => 'Записи на тест драйв', 'icon' => 'fa fa-file-o', 'url' => ['/pickup-form']],
                     ]
                 ],
 //                ['label' => 'Вакансии',

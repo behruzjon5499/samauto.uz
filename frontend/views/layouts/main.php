@@ -5,9 +5,12 @@
 /* @var $content string */
 
 use common\helpers\LangHelper;
+use common\models\Dillers;
 use common\models\PickupForm;
+use common\models\Regions;
 use frontend\assets\AppAsset;
 use frontend\assets\MainAsset;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 //use yii\bootstrap\Nav;
@@ -39,6 +42,9 @@ if ($files = \common\models\Pages::find()->where(['page' => 'files'])->one()) {
     $files = false;
 
 }
+$regions = ArrayHelper::map(Regions::find()->all(),'id','name_ru');
+$dillers = ArrayHelper::map(Dillers::find()->all(),'id','title_ru');
+
 $model = new PickupForm();
 ?>
 <?php $this->beginPage() ?>
@@ -517,18 +523,22 @@ if (isset($action) || (isset($this->params['actions']) && !empty($this->params['
         <div class="wrap">
             <div class="closeBtn"><span></span><span></span></div>
             <div class="title"><?= LangHelper::t("ЗАДАТЬ ВОПРОС", "SAVOL BERMOQ", "ASK A QUESTION"); ?></div>
-            <?php $form = \yii\widgets\ActiveForm::begin(['action' => '/site/pickupform', 'method' => 'post']);
+            <?php $form = \yii\widgets\ActiveForm::begin(['action' => '/site/pickup-form', 'method' => 'post']);
 
             ?>
             <div class="_row">
                 <div class="col-6">
                     <div class="inf">
                         <label for=""><?= LangHelper::t("Регион", "Viloyat", "Region"); ?></label>
-                        <?= $form->field($model, 'region')->textInput()->label(false) ?>
+                        <?= $form->field($model, 'region')->dropDownList(
+                         $regions
+                        )->label(false) ?>
                     </div>
                     <div class="inf">
                         <label for=""><?= LangHelper::t("Дилер", "Diller", "Diller"); ?></label>
-                        <?= $form->field($model, 'diller')->textInput()->label(false) ?>
+                        <?= $form->field($model, 'diller')->dropDownList(
+                            $dillers
+                        )->label(false)  ?>
                     </div>
                 </div>
                 <div class="col-6">

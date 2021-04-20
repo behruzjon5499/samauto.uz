@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+       $dataProvider->query->andWhere(['<>','id',2]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -283,6 +283,11 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
+
+        if ($id == 2)
+        {
+            return $this->goHome();
+        }
         $this->findModel($id)->delete();
 
         $path = Yii::getAlias('/frontend/web/uploads/');

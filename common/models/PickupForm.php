@@ -17,6 +17,10 @@ use Yii;
  * @property string $phone
  * @property string|null $check
  * @property string|null $check1
+ *
+ *
+ * @property Regions $rid
+ * @property Dillers $dil
  */
 class PickupForm extends \yii\db\ActiveRecord
 {
@@ -49,15 +53,24 @@ class PickupForm extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'region' => Yii::t('app', 'Region'),
-            'diller' => Yii::t('app', 'Diller'),
-            'first_name' => Yii::t('app', 'First Name'),
-            'last_name' => Yii::t('app', 'Last Name'),
-            'middle_name' => Yii::t('app', 'Middle Name'),
-            'email' => Yii::t('app', 'Email'),
-            'phone' => Yii::t('app', 'Phone'),
+            'region' => Yii::t('app', 'Регион'),
+            'diller' => Yii::t('app', 'Дилер'),
+            'first_name' => Yii::t('app', 'Имя'),
+            'last_name' => Yii::t('app', 'Фамилия'),
+            'middle_name' => Yii::t('app', 'Отчество'),
+            'email' => Yii::t('app', 'E-mail    '),
+            'phone' => Yii::t('app', 'Телефон'),
             'check' => Yii::t('app', 'Соглашение о сотрудничестве'),
             'check1' => Yii::t('app', 'Соглашение о сотрудничестве'),
         ];
+    }
+
+    public function getRid()
+    {
+        return $this->hasOne(Regions::className(), ['id' => 'region']);
+    }
+    public function getDil()
+    {
+        return $this->hasOne(Dillers::className(), ['id' => 'diller']);
     }
 }
