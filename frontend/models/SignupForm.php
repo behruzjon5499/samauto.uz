@@ -48,9 +48,9 @@ class SignupForm extends Model
     {
         if ( ! $this->validate() ) {
 
-           // print_r($this->getErrors());
-
-            //exit;
+//            print_r($this->getErrors());
+//
+//            exit;
 
             return false;
 

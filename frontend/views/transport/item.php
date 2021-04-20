@@ -54,19 +54,24 @@ $_engine['cilinders'][3] = 8;
 $_engine['drive'][0] =LangHelper::t("Передний", "Old", "Front");
 $_engine['drive'][1] =LangHelper::t("Задний", "Orqa", "Rear");
 $_engine['drive'][2] =LangHelper::t("Оба", "Barchasi", "Both");
-$_engine['gearbox'][0] =LangHelper::t("Механическая", "Mexanik", "Manual");
-$_engine['gearbox'][1] =LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
+//$_engine['gearbox'][0] =LangHelper::t("Механическая", "Mexanik", "Manual");
+//$_engine['gearbox'][1] =LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
 $_engine['gearstop-front'][0] =LangHelper::t("Дисковые", "Diskli", "Disc");
 $_engine['gearstop-front'][1] =LangHelper::t("Барабанные", "Barabanli", "Drum");
 $_engine['gearstop-back'][0] =LangHelper::t("Дисковые", "Diskli", "Disc");
 $_engine['gearstop-back'][1] =LangHelper::t("Барабанные", "Barabanli", "Drum");
-$_engine['fuel-type'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
-$_engine['fuel-type'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
-$_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
+//$_engine['fuel-type'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
+//$_engine['fuel-type'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
+//$_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
 $_engine['abs'][0] =LangHelper::t("Имеется", "Mavjud", "Available");
 $_engine['abs'][1] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
 $_engine['abs']['Есть'] =LangHelper::t("Имеется", "Mavjud", "Available");
 $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
+$_engine['special'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
+$_engine['special'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
+$_engine['special'][2] =LangHelper::t("Газ", "Gaz", "Gas");
+$_engine['auto_mex'][1] =LangHelper::t("Механическая", "Mexanik", "Manual");
+$_engine['auto_mex'][2] =LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
 ?>
     <div class="transport-page section-gap">
         <div class="small_container">
@@ -149,7 +154,9 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                     <div>
                         <div class="t"><?=LangHelper::t("Пассажиры", "Yo'lovchilar", "Passengers"); ?></div>
                         <div class="scrollY">
-                            <p><?=LangHelper::t("Пассажиров", "Yo'lovchilarning", "Total passenger capacity") . ': ' . @$data['count'] ?><br>
+    <?php if (!empty($transport->count)) { ?>
+                            <p><?=LangHelper::t("Пассажиров", "Yo'lovchilar soni", "Total passenger capacity") . ': ' .   $transport->count ?><br>
+                                <?php } ?>
                                 <?=LangHelper::t("Мест для сидения", "O'rindiqlar", "Number of seats") . ': ' . @$data['count_branch'] ?>
                             </p>
                         </div>
@@ -171,7 +178,7 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                         <div class="t"><?=LangHelper::t("Масса, кг", "Massasi, kg", "Weight, kg"); ?></div>
                         <div class="scrollY">
                             <p><?=LangHelper::t("Полная масса", "To'la og'irligi", "GVM") . ': ' . @$data['mass'] ?><br>
-                                <?= $transport->type == 1 ? LangHelper::t("Грузоподъемность", "Yuk ko'tarish qobiliyati", "Payload") . ': ' . @$data['mass-max'] : '' ?>
+                                <?= $transport->type == 1 ? LangHelper::t("Грузоподъемность", "Yuk ko'tarish qobiliyati", "Payload") . ': ' . $transport->trucks : '' ?>
                             </p>
                         </div>
                     </div>
@@ -181,7 +188,13 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                     <div>
                         <div class="t"><?=LangHelper::t("Топлива", "Yoqilg`i", "Fuel"); ?></div>
                         <div class="scrollY">
-                            <p><?=LangHelper::t("Тип", "Turi", "Type") . ': ' . $_engine['fuel-type'][ @$data['fuel-type'] ] ?></p>
+                            <?php if (!empty($transport->special)) { ?>
+                                <p><?= LangHelper::t("Тип", "Turi", "Type") . ': ' . $_engine['special'][$transport->special] ?></p>
+
+                            <?php } ?>
+                            <p><?=LangHelper::t("Расход топлива", "Yoqilg`i sarfi", "Fuel consumption") . ': ' . @$data['expense_city'] ?></p>
+                            <p><?=LangHelper::t("Объем бака", "Hajmi", "Volume of the tank") . ': ' . @$data['fuel-size'] ?></p>
+
                         </div>
                     </div>
 
@@ -353,8 +366,8 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                     <div>
                         <div class="t"><?=LangHelper::t("Коробка передач", "Uzatmalar qutisi", "Transmission"); ?></div>
                         <div class="scrollY">
-                            <p><?= @$_engine['gearbox'][@$data['gearbox']] ?><br>
-                               <?=LangHelper::t("Количество передач", "Uzatishlar soni", "Number of speeds") . ': ' . @$data['gearbox_count'] ?>
+                            <p><?= @$_engine['auto_mex'][$transport->auto_mex]?><br>
+                                <?=LangHelper::t("Количество передач", "Uzatishlar soni", "Number of speeds") . ': ' . @$data['gearbox_count'] ?>
                             </p>
                         </div>
                     </div>

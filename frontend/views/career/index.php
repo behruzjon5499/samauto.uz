@@ -78,7 +78,7 @@ $noImage = 'no-image.png';
 
             <?php if(++$i === $numItems): ?>
                     <div class="col-6">
-                        <a href="" class="item _ask_btn">
+                        <a href="/career/<?= $item->url?>" class="item _ask_btn">
                             <div class="<?php
                             if ($start < $middle) {
                                 echo 'left';
@@ -109,7 +109,7 @@ $noImage = 'no-image.png';
                     </div>
             <?php else:?>
                 <div class="col-6">
-                    <a href="<?= $item->url?>" class="item">
+                    <a href="/career/<?= $item->url?>" class="item">
                         <div class="<?php
                         if ($start < $middle) {
                             echo 'left';

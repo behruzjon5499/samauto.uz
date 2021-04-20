@@ -39,6 +39,7 @@ use yii\web\UploadedFile;
 class VacancyRequest extends \yii\db\ActiveRecord
 {
     public $file;
+
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
     /**

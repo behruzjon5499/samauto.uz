@@ -86,12 +86,12 @@ if ($('.full-page-definder').is(':hidden') && $('#fsvs-body').length > 0) {
     var header = $(".fullpage_header");
 
     function myFunction() {
-        if(window.pageYOffset > 2) {
-            if(!$('.fullpage_menu').hasClass('active')){
+        if (window.pageYOffset > 2) {
+            if (!$('.fullpage_menu').hasClass('active')) {
                 $('.fullpage_header').addClass('sticky_header');
             }
         } else {
-            if(!$('.fullpage_menu').hasClass('active')){
+            if (!$('.fullpage_menu').hasClass('active')) {
                 $('.fullpage_header').removeClass('sticky_header');
             }
         }
@@ -522,5 +522,28 @@ $(window).on('load', function () {
             'pointer-events': 'auto'
         });
     }
+
+
+    $('#type-1').on('change', function () {
+        type_1_props.val_2 = $('input[name=destination]:checked', '#type-1').val() ? $('input[name=destination]:checked', '#type-1').val() : '';
+        type_1_props.val_3 = $('select[name=passengers]', '#type-1').val() ? $('select[name=passengers]', '#type-1').val() : '';
+        type_1_props.val_4 = $('input[name=back]:checked', '#type-1').val() ? $('input[name=back]:checked', '#type-1').val() : '';
+
+        var url = "/transport/search?get=" + type_1_props.val_2 + "&get1=" + type_1_props.val_3 + "&get2=" + type_1_props.val_4;
+
+        console.log(url);
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status === 1) {
+
+                }
+            }
+        })
+    });
+
 });
 

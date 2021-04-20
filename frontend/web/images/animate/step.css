@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+font-family: 'Roboto', sans-serif;
+}
+input::placeholder {
+  font-family: 'Roboto' !important;
+}
+
+@font-face { 
+  font-family: 'UniNeueBook'; 
+  src: url('./fonts/UniNeueBook.otf') format('opentype'); font-style: normal; font-weight: 500;
+}
+@font-face { 
+  font-family: 'UniNeueBookRegular'; 
+  src: url('./fonts/UniNeueRegular.otf') format('opentype'); font-style: normal;
+}
+@font-face { 
+  font-family: 'UniNeueBook'; 
+  src: url('./fonts/UniNeueBold.otf') format('opentype'); font-style: normal; font-weight: 700;
+}
+@font-face { 
+  font-family: 'UniNeueBook'; 
+  src: url('./fonts/UniNeueLight.otf') format('opentype'); font-style: normal; font-weight: 300;
+}
+
+
+@font-face { 
+  font-family: 'BebasNeueBook'; 
+  src: url('./fonts/BebasNeueBook.otf') format('opentype'); font-style: normal; font-weight: 500;
+}
+@font-face { 
+  font-family: 'BebasNeueBook'; 
+  src: url('./fonts/BebasNeueBold.otf') format('opentype'); font-style: normal; font-weight: 700;
+}
+a {
+  cursor: pointer;
+  color: #C62829 !important;
+  transition: all 1s ease-out;
+}
+#gwd-taparea_2, #gwd-taparea_9 {
+  cursor: auto;
+}
+.small_container {
+    width: 85%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.my-cont {
+  padding-top: 50px;
+}
+a:hover {
+  opacity: 0.85;
+}
+
+.beauty-list {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 900;
+  opacity: 0.85;
+}
+
+
+.gwd-p-1qry .number {
+  color: #C62829;
+  font-size: 50px;
+  font-family: sans-serif;
+  position: absolute;
+  margin-top: -35px;
+}
+.wrapper {
+  padding-bottom: 100px;
+  padding-top: 60px;
+}
+.mTitle {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 34px;
+  color: #000000;
+  font-family: 'BebasNeueBook';
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+p {
+  font-size: 18px;
+  color: #464746;
+  line-height: 28px;
+  margin: 0;
+}
+.gwd-p-1qry {
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.gwd-p-1xap {
+  width: 205px;
+}
+.my-container {
+  position: relative;
+  padding-left: 60px;
+  padding-right: 60px;
+  overflow-y: hidden;
+}
+#cont-1, #cont-2, #cont-3, #cont-4, #cont-5, #cont-6, #cont-7, #cont-8, #cont-9, #cont-10, #cont-start {
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+  transition: all 1s ease-out;
+}
+.show {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.hide {
+  opacity: 0 !important;
+}
+ul {
+  list-style: none;
+}
+ol {
+  list-style: none;
+}
+ul li, ol li {
+  margin-bottom: 4px;
+}
+
+
+* {
+   outline: none !important;
+}
+ body {
+   background: #f2f2f2;
+}
+
+ .button__scroll--up {
+   z-index: 1000;
+   cursor: pointer;
+   position: fixed;
+   right: 30px;
+   bottom: 30px;
+   border-radius: 100%;
+   border: 0;
+   width: 55px;
+   height: 55px;
+   font-size: 1.7em;
+   outline: none;
+   color: #5a6d65;
+   transform: scale(0);
+   box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+   transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+ .is_showing {
+   display: block;
+   transform: scale(1);
+}
+.resume-search {
+  padding-top: 8px;
+  max-width: 579px;
+  margin-bottom: 39px;
+}
+.vacancies-filter {
+  padding-top: 40px;
+}
+.vacancies-filter .mTitle {
+  margin-bottom: 14px;
+}
+.vacancies-filter input {
+  box-shadow: none !important;
+  border: none !important; 
+}
+.send-resume {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.send-resume a {
+  margin-top: 30px;
+}
+.vac-city {
+  padding-top: 8px;
+}
+a {
+  text-decoration: none !important;
+}
+.beauty-list a {
+  display: inline-block;
+}
+.vac-city a {
+  color: #c62829;
+  text-decoration: none;
+  font-size: 22.5px;
+  display: inline-block;
+  font-weight: 700;
+  position: relative;
+  margin-right: 48px;
+  text-transform: uppercase;
+  font-family: 'BebasNeueBook', cursive;
+}
+.under-hover:hover::after, .under-hover.active::after {
+  transform: scaleX(1);
+}
+.under-hover::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background-color: #c62829;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  transition: .3s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+  position: relative;
+}
+.ButtonBox {
+    display: inline-block;
+    position: relative;
+    background-color: #c62829;
+    padding: 14px 60px 14px 18px;
+    overflow: hidden;
+    transition: background-color .2s cubic-bezier(.52,.08,.18,1) 0s;
+    text-transform: uppercase;
+}
+.ButtonBox .ButtonBox-text {
+    display: block;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    transition: color .55s cubic-bezier(.52,.08,.18,1),-webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: color .55s cubic-bezier(.52,.08,.18,1),transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: color .55s cubic-bezier(.52,.08,.18,1),transform .55s cubic-bezier(.52,.08,.18,1),-webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+}
+.ButtonBox .ButtonBox-icon {
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 14px;
+    right: 18px;
+    top: 50%;
+    margin-top: -7px;
+    line-height: 0;
+    color: #fff;
+    z-index: 1;
+    transition: color .55s cubic-bezier(.52,.08,.18,1),-webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: color .55s cubic-bezier(.52,.08,.18,1),transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: color .55s cubic-bezier(.52,.08,.18,1),transform .55s cubic-bezier(.52,.08,.18,1),-webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+}
+.ButtonBox:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 110%;
+    height: 100%;
+    background-color: #ffffff;
+    transition: -webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: transform .55s cubic-bezier(.52,.08,.18,1);
+    transition: transform .55s cubic-bezier(.52,.08,.18,1),-webkit-transform .55s cubic-bezier(.52,.08,.18,1);
+    -webkit-transform-origin: right top;
+    transform-origin: right top;
+    -webkit-transform: translateX(-101%) skewX(-17.62deg);
+    transform: translateX(-101%) skewX(-17.62deg);
+    backface-visibility: hidden;
+    content: '';
+}
+.ButtonBox .ButtonBox-icon svg {
+    width: 16px;
+    height: 14px;
+    vertical-align: bottom;
+    fill: #ffffff;
+    transition: .3s;
+}
+.ButtonBox:hover {
+    background-color: #d0393a;
+}
+.ButtonBox:hover .ButtonBox-icon {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+}
+.site_modal .vacancyinfo .wrap {
+    width: 50%;
+    max-width: 460px;
+    margin-top: 40px;
+}
+.site_modal .flex_row_cen_cen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.askQuest .graduate-form input, .askQuest .graduate-form textarea {
+    width: 100%;
+    background-color: white;
+    font-size: 15px;
+    padding: 7px 20px;
+    border: 1px solid red;
+    border-radius: 2px;
+}
+.askQuest .graduate-form label {
+    color: black;
+    text-transform: capitalize;
+}
+.graduate-form .inputfile::after {
+    width: 100px;
+    content: 'Resume file.';
+    display: inline-block;
+    background: #c62829;
+    border: 1px solid #c62829;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    left: 15px;
+}
+.graduate-form {
+  position: relative;
+}
+
+#man3_1 img{
+    position: relative;
+    height: 123px;
+    left: -166px;
+    bottom: -53px;
+    transform: scale(-1, 1) !important;
+}
+#man4_1 img {
+  transform: scale(-1, 1);
+  position: relative;
+  left: -100px;
+}
+#man5_1 {
+  width: 140px;
+  height: 140px;
+}
+#man5_1 img {
+  transform: scale(-1, 1);
+  position: relative;
+  left: -90px;
+  bottom: -45px;
+}
+#man6_1 {
+  width: 140px;
+  height: 140px;
+}
+#man6_1 img {
+  position: relative;
+  left: -300px;
+  transform: scale(-1, 1);
+  bottom: -20px;
+}
+#man7_1 img {
+  transform: scale(-1, 1);
+  width: 125px;
+  height: 125px;
+  position: relative;
+  bottom: -70px;
+}
+#body img {
+  width: 220px !important;
+  height: 150px !important;
+  position: relative;
+  top: 115px;
+}

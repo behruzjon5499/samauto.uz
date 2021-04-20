@@ -130,4 +130,13 @@ class CareerController extends Controller
 
         return $this->render('information', compact('lang', 'information', 'model'));
     }
+
+
+    public function actionAnimate()
+    {
+
+        return $this->renderFile('@frontend/views/transport/index.html', [
+
+        ]);
+    }
 }

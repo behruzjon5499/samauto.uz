@@ -124,6 +124,7 @@ return [
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>' => '<controller>/index',
             ],
+
         ],
     ],
     'params' => $params,

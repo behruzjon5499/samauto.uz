@@ -111,4 +111,5 @@ use yii\widgets\ActiveForm;
 		} else console.log('is not image mime type');
 	  } else console.log('not isset files data or files API not support');  
 	});  
-	$('.img_preview').click(function(e){ e.preventDefault(); $('#img_preview.image').click(); });});";$this->registerJs($script, yii\web\View::POS_END);
+	$('.img_preview').click(function(e){ e.preventDefault(); $('#img_preview.image').click(); });});";
+$this->registerJs($script, yii\web\View::POS_END);

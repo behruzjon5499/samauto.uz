@@ -100,7 +100,6 @@ class VacancyRequestController extends Controller
     {
         $model = $this->findModel($id);
 
-
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
             if (!empty($_FILES['VacancyRequest']['name']['file'])) {
                 $model->file = $_POST['VacancyRequest']['file'];

@@ -12,6 +12,7 @@ use common\models\TabPanel;
 use common\models\Transport;
 use common\models\Videos;
 use Yii;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 
 
@@ -184,23 +185,26 @@ class TransportController extends Controller
         ]);
     }
 
-    public function actionSearch()
+
+
+    public function actionSearch($get,$get1,$get2)
     {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+//        $get = Yii::$app->request->post('destination');
+//        $get1 = Yii::$app->request->post('passengers');
+//        $get2 = Yii::$app->request->post('back');
 
-        $get = Yii::$app->request->post('destination');
-        $get1 = Yii::$app->request->post('passengers');
-        $get2 = Yii::$app->request->post('back');
-
-        if ($_POST['passengers'] == 15) {
+        if ($get1 == 15) {
             $transport = Transport::find()->andFilterWhere(['type' => 0])
                 ->andFilterWhere(['between', 'count', 15, 45])
                 ->andFilterWhere(['status' => 1])
                 ->andFilterWhere(['special' => $get2])
                 ->andFilterWhere(['like', 'title_ru', $get])->all();
-            return $this->render('index', [
+            return [
                 'transport' => $transport,
                 'lang' => $this->lang,
-            ]);
+            ];
+
         } elseif ($_POST['passengers'] == 46) {
             $transport = Transport::find()->andFilterWhere(['type' => 0])
                 ->andFilterWhere(['between', 'count', 46, 80])
@@ -239,84 +243,79 @@ class TransportController extends Controller
 
     public function actionSearch1()
     {
-
-
         $get = Yii::$app->request->post('mass');
-        $get1 = Yii::$app->request->post('special');
         $get2 = Yii::$app->request->post('trucks');
         $get3 = Yii::$app->request->post('front');
         $get4 = Yii::$app->request->post('gears');
 
-            if ($get2 == 4) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 1000, 4000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
+        if ($get2 == 4) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 1000, 4000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['tip_kuzov' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
 
-            } elseif ($get2 == 8) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 4000, 8000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
-            } elseif ($get2 == 12) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 8000, 16000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
-            } elseif ($get2 == 16) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 16000, 20000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
-            } elseif ($get2 == 20) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 20000, 25000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
-            } elseif ($get2 == 25) {
-                $transport = Transport::find()->andFilterWhere(['type' => 1])
-                    ->andFilterWhere(['between', 'trucks', 25000, 100000])
-                    ->andFilterWhere(['status' => 1])
-                    ->andFilterWhere(['special' => $get])
-                    ->andFilterWhere(['like', 'data', $get3])
-                    ->andFilterWhere(['like', 'data', $get4])->all();
-                return $this->render('index', [
-                    'transport' => $transport,
-                    'lang' => $this->lang,
-                ]);
-            }
-
-        else {
+        } elseif ($get2 == 8) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 4000, 8000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['special' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
+        } elseif ($get2 == 12) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 8000, 16000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['special' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
+        } elseif ($get2 == 16) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 16000, 20000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['special' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
+        } elseif ($get2 == 20) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 20000, 25000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['special' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
+        } elseif ($get2 == 25) {
+            $transport = Transport::find()->andFilterWhere(['type' => 1])
+                ->andFilterWhere(['between', 'trucks', 25000, 100000])
+                ->andFilterWhere(['status' => 1])
+                ->andFilterWhere(['special' => $get])
+                ->andFilterWhere(['special' => $get3])
+                ->andFilterWhere(['like', 'data', $get4])->all();
+            return $this->render('index', [
+                'transport' => $transport,
+                'lang' => $this->lang,
+            ]);
+        } else {
             return $this->render('index', [
 //                'transport' => $transport,
                 'lang' => $this->lang,
@@ -331,10 +330,8 @@ class TransportController extends Controller
         if ($data) {
             $other = 'other';
             $get = $_POST['auto'];
-            if ($data == $other) {
-                $transport = Transport::find()->Where(['like', 'title_ru', 'Мусоровоз'])
-                    ->orWhere(['like', 'title_ru', 'Комбинированная'])
-                    ->orWhere(['like', 'title_ru', 'Ассенизатор'])
+            if ($data == 8) {
+                $transport = Transport::find()->Where(['tip_kuzov' =>  '9'])
                     ->andWhere(['status' => 1])
                     ->andWhere(['type' => 2])->all();
                 return $this->render('index', [
@@ -342,7 +339,7 @@ class TransportController extends Controller
                     'lang' => $this->lang,
                 ]);
             } else {
-                $transport = Transport::find()->Where(['like', 'title_ru', $get])
+                $transport = Transport::find()->Where(['tip_kuzov' =>  $get])
                     ->andWhere(['status' => 1])
                     ->andWhere(['type' => 2])->all();
                 return $this->render('index', [
@@ -368,7 +365,7 @@ class TransportController extends Controller
         if ($data || $data1 || $data2 || $data3) {
             $transport = Transport::find()->andFilterWhere(['type' => 3])
                 ->andFilterWhere(['status' => 1])
-                ->andFilterWhere(['special' => $data])
+                ->andFilterWhere(['auto_mex' => $data])
                 ->andFilterWhere(['like', 'data', $data1])
                 ->andFilterWhere(['like', 'data', $data2])
                 ->andFilterWhere(['doors' => $data3])->all();

@@ -1,11 +1,6 @@
 AddDefaultCharset UTF-8
 
-Options +FollowSymLinks
-IndexIgnore */*
-RewriteEngine on
-RewriteCond %{SERVER_PORT} !^443$
-RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
- # Заголовок Cache-Control
+# Заголовок Cache-Control
 <IfModule mod_headers.c>
        Header append Cache-Control "no-store, no-cache, must-revalidate"
 </IfModule>
@@ -16,22 +11,33 @@ RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
 </IfModule>
 
 # Если запрос начинается с /ts, то заменяем на
-# Если запрос начинается с /admin, то заменяем на /backend/web/
-RewriteCond %{REQUEST_URI} ^/admin
-RewriteRule ^admin\/?(.*) /backend/web/$1
- 
-# Добавляем другой запрос /frontend/web/$1
-RewriteCond %{REQUEST_URI} !^/(frontend/web|backend/web|admin)
-RewriteRule (.*) /frontend/web/$1
- 
-# Если frontend запрос
-RewriteCond %{REQUEST_URI} ^/frontend/web
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /frontend/web/index.php
- 
-# Если backend запрос
-#RewriteCond %{REQUEST_URI} ^/backend/web
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /backend/web/index.php
+RewriteCond %{REQUEST_URI} ^/ts
+RewriteRule ^ts\/?(.*) /ts/$1
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    # если /admin, то в backend
+    RewriteCond %{REQUEST_URI} ^/(admin)
+    RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+    RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+    RewriteRule ^admin/uploads/(.*)$ backend/web/uploads/$1 [L]
+    RewriteRule ^admin/js/(.*)$ backend/web/js/$1 [L]
+    RewriteCond %{REQUEST_URI} !^/backend/web/(assets|js|css|js)/
+    RewriteCond %{REQUEST_URI} ^/(admin)
+    RewriteRule ^.*$ backend/web/index.php [L]
+    RewriteCond %{REQUEST_URI} ^/(assets|css|js|images)
+    RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+    RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+    RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
+    RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+    RewriteRule ^(.*)$ frontend/web/$1 [L]
+    RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|css|js)/
+    RewriteCond %{REQUEST_URI} !index.php
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^.*$ frontend/web/index.php
+</IfModule>

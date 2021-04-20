@@ -137,11 +137,8 @@ echo '</pre>';*/
     <div class="fullpage_menu">
         <ul>
             <li class="overlayClose"></li>
-            <li style="transition-delay: 0s;"><a href="/transport/bus" class="preload"><?= LangHelper::t("АВТОБУСЫ", "AVTOBUSLAR", "BUSES"); ?></a></li>
-            <li style="transition-delay: 0.1s;"><a href="/transport/trucks" class="preload"><?= LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS"); ?></a></li>
-            <li style="transition-delay: 0.2s;"><a href="/transport/special" class="preload"><?= LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"); ?></a></li>
-            <li style="transition-delay: 0s;"><a href="/transport/pickups" class="preload"><?= LangHelper::t("ПИКАПЫ", "PIKAPLAR", "PICKUPS"); ?></a></li>
-            <li style="transition-delay: 0.3s;"><a href="/dillers" class="preload"><?= LangHelper::t("ДИЛЕРЫ", "DILERLAR", "DEALERS"); ?></a></li>
+            <li style="transition-delay: 0s;"><a href="/transport/index" class="preload"><?= LangHelper::t("ПРОДУКЦИЯ", "MAHSULOTLAR", "PRODUCTS"); ?></a></li>
+           <li style="transition-delay: 0.3s;"><a href="/dillers" class="preload"><?= LangHelper::t("ДИЛЕРЫ", "DILERLAR", "DEALERS"); ?></a></li>
             <li style="transition-delay: 0.4s;"><a href="/services" class="preload"><?= LangHelper::t("СЕРВИС", "XIZMAT", "SERVICE"); ?></a></li>
             <li style="transition-delay: 0.5s;"><a href="/localization/about" class="preload"><?= LangHelper::t("ЛОКАЛИЗАЦИЯ", "MAHALLIYLASHTIRISH", "LOCALIZATION"); ?></a></li> <!-- JOYLASHTIRISH -->
             <li style="transition-delay: 0.6s;"><a href="/news/archive" class="preload"><?= LangHelper::t("НОВОСТИ", "YANGILIKLAR", "NEWS"); ?></a></li>
@@ -161,22 +158,22 @@ $script = "
 
 $(document).ready(function () {
 
-    $('.send-phone').click(function(){        
+    $('.send-phone').click(function(){
         var name = $('#modal-call #name').val();
-        var phone = $('#modal-call #phone').val();        
-        var id = $('#modal-call #id').val();        
-        if(name.length==0 ){ 
+        var phone = $('#modal-call #phone').val();
+        var id = $('#modal-call #id').val();
+        if(name.length==0 ){
             $('#modal-call #name').focus();
-            return false;         
-        }        
+            return false;
+        }
         if(phone.length == 0) {
             $('#modal-call #phone').focus();
             return false;
-        }         
+        }
         $.ajax({
             type: 'post',
             url: '/send-phone',
-            data: 'id='+id+'&name='+name+'&phone='+phone+'&_csrf=' + yii.getCsrfToken(), 
+            data: 'id='+id+'&name='+name+'&phone='+phone+'&_csrf=' + yii.getCsrfToken(),
             dataType: 'json',
             success: function(data){
                 $('#modal-call').modal('toggle');
@@ -185,7 +182,7 @@ $(document).ready(function () {
                 alert( '{$server_error}'  ) ;
             }
          });
-    });   
+    });
 
 });";
 

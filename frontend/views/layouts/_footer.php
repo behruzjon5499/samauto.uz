@@ -21,7 +21,7 @@ if($lang=='') $lang = 'ru';
                     <li><a href="/about/history"><?=LangHelper::t("ИСТОРИЯ", "TARIXI", "HISTORY"); ?></a></li>
                     <li><a href="/about/leadership"><?=LangHelper::t("РУКОВОДСТВО", "KOMPANIYA BOSHQARUVI", "COMPANY MANAGEMENT"); ?></a></li>
                     <li><a href="/about/documents"><?=LangHelper::t("ДОКУМЕНТЫ КОМПАНИИ", "KOMPANIYA HUJJATLARI", "COMPANY DOCUMENTS"); ?></a></li>
-                    <li><a href="/about/vacancy"><?=LangHelper::t("КАРЬЕРА", "KARYERA", "CAREER"); ?></a></li>
+                <!--    <li><a href="/about/vacancy"><?=LangHelper::t("КАРЬЕРА", "KARYERA", "CAREER"); ?></a></li> -->
                     <li><a href="/contacts"><?=LangHelper::t("КОНТАКТНАЯ ИНФОРМАЦИЯ", "ALOQA", "CONTACTS"); ?></a></li>
                     <li><a href="/news/archive"><?=LangHelper::t("НОВОСТИ", "YANGILIKLAR", "NEWS"); ?></a></li>
                 </ul>
@@ -30,6 +30,7 @@ if($lang=='') $lang = 'ru';
                     <li><a href="/transport/bus"><?=LangHelper::t("АВТОБУСЫ", "AVTOBUSLAR", "BUSES"); ?></a></li>
                     <li><a href="/transport/trucks"><?=LangHelper::t("ГРУЗОВЫЕ АВТОМОБИЛИ", "YUK AVTOMOBILLARI", "TRUCKS"); ?></a></li>
                     <li><a href="/transport/special"><?=LangHelper::t("СПЕЦ АВТОМОБИЛИ", "MAXSUS AVTOULOVLAR", "SPECIAL BODY TRUCKS"); ?></a></li>
+                    <li><a href="/transport/pickups"><?=LangHelper::t("ПИКАПЫ", "PIKAPLAR", "PICKUPS"); ?></a></li>
                     <li class="empty_li" style="opacity: 0!important; pointer-events: none!important;"><a href="#">a</a></li>
                     <li><a href="/dillers"><?=LangHelper::t("ДИЛЕРЫ", "DILERLAR", "DEALERS"); ?></a></li>
                     <li><a href="/spare-parts"><?=LangHelper::t("ЗАПЧАСТИ", "EHTIYOT QISMLAR", "SPARE PARTS"); ?></a></li>
@@ -101,6 +102,22 @@ if($lang=='') $lang = 'ru';
                                                     l6.894,16.284L25.682,35.235z"/>
                                             </g>
                                         </svg>
+                        </a>
+                        <a href="https://rss.app/feeds/6QFlHbZupDoXiNCJ.xml">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve">
+                                <g>
+                                    <path d="M339.708,400H400c-0.035-86.835-35.341-165.515-92.369-222.578C250.567,120.359,171.953,85.035,85.136,85v60.121
+                                        C225.512,145.226,339.603,259.505,339.708,400z"/>
+                                    <path d="M232.451,399.899c0.017,0,0.017,0.101,0.017,0.101h60.397c-0.052-57.304-23.345-109.187-60.996-146.869
+                                        c-37.664-37.686-89.534-60.979-146.833-61.014v60.139c39.27,0.035,76.409,15.452,104.195,43.291
+                                        C217.02,323.302,232.385,360.489,232.451,399.899z"/>
+                                    <path d="M126.821,399.606c11.567,0,21.958-4.629,29.614-12.219c7.586-7.604,12.237-17.925,12.272-29.426
+                                        c-0.035-11.502-4.686-21.844-12.307-29.466c-7.621-7.586-18.012-12.254-29.579-12.254c-11.555,0-21.928,4.668-29.549,12.237
+                                        C89.681,336.086,85,346.459,85,357.961c0,11.502,4.681,21.84,12.272,29.426C104.876,394.96,115.266,399.606,126.821,399.606z"/>
+                                    <path d="M0,0v485h485V0H0z M455,455H30V30h425V455z"/>
+                                </g>
+                            </svg>
                         </a>
                     </div>
                 </ul>

@@ -297,7 +297,7 @@ body {
 	line-height: normal;
 	text-decoration: none;
 }
-.fullpage_menu a:hover, .fullpage_menu a.active {color: #c62829;}
+.fullpage_menu a:hover, .fullpage_menu a.active {color: #c62829;text-decoration: none;}
 
 .fullpage_menu ul li {
 	transition: 1s;
@@ -2121,16 +2121,25 @@ body {
 .archive .boxes .item {
 	/*width: 100%;
 	padding-bottom: 53%;*/
+	/*background-size: cover;*/
+	/*background-position: center;*/
+	/*max-height: 500px;*/
+	/*display: block;*/
+	/*position: relative;*/
+	/*margin: 0 -2px;*/
+
+	/*width: 33.33%;*/
+	/*padding-bottom: 15%;*/
+	/*height: 500px;*/
 	background-size: cover;
 	background-position: center;
-	max-height: 500px;
+	max-height: 220px;
 	display: block;
 	position: relative;
 	margin: 0 -2px;
 
-	width: 33.33%;
+	width: 25%;
 	padding-bottom: 15%;
-	height: 500px;
 }
 .archive .boxes .item > div {
 	position: absolute; left: 0; top: 0;
@@ -3495,8 +3504,8 @@ div[id^="hotspot_"] a {
 	background-position: center top;
 	width: 128px;
 	height: 29px;
-	padding-top: 18px;
-	z-index: 999;
+	/*padding-top: 18px;*/
+	/*z-index: 999;*/
 }
 
 .navigation .btn-control {
@@ -3648,7 +3657,7 @@ div[id^="hotspot_"] a {
 }
 
 body {
-	font-family: AlteHaasGrotesk;
+	/*font-family: AlteHaasGrotesk;*/
 	padding: 0;
 	margin: 0;
 	position: relative;
@@ -3657,7 +3666,12 @@ body {
     /*    height:540px;*/
     /**/*/
 }
-
+a {
+	text-decoration: none;
+}
+.downloads {
+	font-family: 'UniNeueBook', cursive;
+}
 .reel-preloader {
 	display: none;
 }
@@ -4775,6 +4789,7 @@ display: block;
 .configuration {
 	display: flex;
 	flex-direction: column;
+
 }
 .configuration h2 {
 	margin-bottom: 40px;
@@ -4867,14 +4882,24 @@ display: block;
 	text-align: center;
 	
 }
+.scale-reverse {
+	transform: scale(1, -1);
+}
 .configuration .step-1 li label input {
 	height: 0.1px;
 	width: 0;
 	opacity: 0;
 }
-.configuration .step-1 .active span{
-	text-decoration: underline;
-	color: #BE2829;
+.configuration .step-1 span {
+	width: max-content;
+	margin-top: 15px;
+}
+.configuration .step-1 span::after  {
+	margin-top: 7px;
+}
+.configuration .step-1 .active span::after {
+	background-color: #c62829;
+	transform: scaleX(1);
 }
 .configuration .step-1 li label {
 	display: flex;
@@ -4892,7 +4917,7 @@ display: block;
 	opacity: .6;
 }
 .configuration .step-1 li img {
-	height: 86px;
+	height: 80px;
 }
 .configuration ul li {
 	display: flex;
@@ -5110,4 +5135,7 @@ display: block;
 }
 .flex_row a:hover {
 	text-decoration: none !important;
+}
+#post_height {
+	background-color: transparent;
 }

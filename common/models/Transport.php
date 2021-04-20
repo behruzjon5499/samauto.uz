@@ -35,7 +35,19 @@ use yii\web\UploadedFile;
 
  * @property string $file_title_en
     
- * @property string $image
+ * @property string $doors
+
+ *  @property string $count
+
+ * @property string $trucks
+
+ *@property string $special
+
+ * @property string $auto_mex
+
+ * @property string $type_auto
+
+ *
     
  * @property string $data
     
@@ -57,7 +69,7 @@ class Transport extends \yii\db\ActiveRecord
     {
         return [
             [['category_id','pos'], 'integer'],
-            [['data','model'], 'string'],
+            [['data','model' ,'doors' ,'count' ,'special' ,'trucks' ,'auto_mex' ,'type_auto'], 'string'],
             [['status'], 'integer', 'max' => 1],
             [['type'], 'integer', 'max' => 3],
             [['type_id', 'title_ru', 'title_uz', 'title_en'], 'string', 'max' => 128],
@@ -86,7 +98,12 @@ class Transport extends \yii\db\ActiveRecord
             'file_title_en' => 'Заголовок прикрепленного файла En',
             'image' => 'Фото',
             'data' => 'Data',
-            'pos' => 'Порядок',
+            'doors' => 'Doors',
+            'count' => 'Count',
+            'auto_mex' => 'Auto Mex',
+            'trucks' => 'Trucks',
+            'type_auto' => 'Type Auto',
+            'special' => 'Special',
         ];
     }
 

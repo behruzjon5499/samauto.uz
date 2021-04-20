@@ -25,6 +25,7 @@ use common\models\Missions;
 use common\models\News;
 use common\models\Pages;
 use common\models\Partners;
+use common\models\PickupForm;
 use common\models\Products;
 use common\models\Questions;
 use common\models\Receptions;
@@ -35,6 +36,7 @@ use common\models\Vacancy;
 use common\models\VacancyCategory;
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -1132,7 +1134,7 @@ class SiteController extends Controller
 
 
         if( !$action = Actions::find()->where(['status'=>1,'link'=>$link])->one() ){
-            $action = false;
+            return $this->render('error', ['name' => 'Error']);
         }
 
         return $this->render('action-item', [
@@ -1242,6 +1244,31 @@ class SiteController extends Controller
         exit;
 
     }
+    public function actionPickupform()
+        {
+            $post = Yii::$app->request->post();
+
+
+            $question = new PickupForm();
+
+            if($question->load($post)) {
+
+                if ($question->save()) {
+
+                    Yii::$app->session->setFlash('info',Yii::t('app', 'Ваша заявка успешно отправлена'));
+
+                } else {
+
+                    $err = json_encode($question->getErrors(),256);
+                    Yii::$app->session->setFlash('info',Yii::t('app', 'Ошибка при отправке сообщения' . $err));
+                }
+
+            }
+
+            return $this->redirect('/site/index');
+
+
+}
 	
 }
 

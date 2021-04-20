@@ -11,14 +11,14 @@ use frontend\assets\IrbisAsset;
 
 IrbisAsset::register($this);
 
-$title = 'title_'.$lang;
-$content = 'content_'.$lang;
-$file_title = 'file_title_'.$lang;
-$destination = 'destination_'.$lang;
-$podves_front = 'podves-front_'.$lang;
-$podves_back = 'podves-back_'.$lang;
-$abs = 'abs_'.$lang;
-$gears = 'gears_'.$lang;
+$title = 'title_' . $lang;
+$content = 'content_' . $lang;
+$file_title = 'file_title_' . $lang;
+$destination = 'destination_' . $lang;
+$podves_front = 'podves-front_' . $lang;
+$podves_back = 'podves-back_' . $lang;
+$abs = 'abs_' . $lang;
+$gears = 'gears_' . $lang;
 
 $this->title = LangHelper::t("ТРАНСПОРТ", "TRANSPORT", "TRANSPORT") . '. ' . $transport->$title;
 // echo '<pre>'; print_r($data); echo '</pre>';
@@ -44,28 +44,33 @@ $_transport_url = [
 @$data['abs'] = @$data[$abs] ?? @$data['abs'];
 @$data['gears'] = @$data[$gears] ?? @$data['gears'];
 // расположение поршней
-$_engine['type'][0] =LangHelper::t("Рядный", "Bir qator", "In line");
-$_engine['type'][1] =LangHelper::t("V-образный", "V-simon", "V-type");
+$_engine['type'][0] = LangHelper::t("Рядный", "Bir qator", "In line");
+$_engine['type'][1] = LangHelper::t("V-образный", "V-simon", "V-type");
 $_engine['cilinders'][0] = 3;
 $_engine['cilinders'][1] = 4;
 $_engine['cilinders'][2] = 6;
 $_engine['cilinders'][3] = 8;
-$_engine['drive'][0] =LangHelper::t("Передний", "Old", "Front");
-$_engine['drive'][1] =LangHelper::t("Задний", "Orqa", "Rear");
-$_engine['drive'][2] =LangHelper::t("Оба", "Barchasi", "Both");
-$_engine['gearbox'][0] =LangHelper::t("Механическая", "Mexanik", "Manual");
-$_engine['gearbox'][1] =LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
-$_engine['gearstop-front'][0] =LangHelper::t("Дисковые", "Diskli", "Disc");
-$_engine['gearstop-front'][1] =LangHelper::t("Барабанные", "Barabanli", "Drum");
-$_engine['gearstop-back'][0] =LangHelper::t("Дисковые", "Diskli", "Disc");
-$_engine['gearstop-back'][1] =LangHelper::t("Барабанные", "Barabanli", "Drum");
-$_engine['fuel-type'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
-$_engine['fuel-type'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
-$_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
-$_engine['abs'][0] =LangHelper::t("Имеется", "Mavjud", "Available");
-$_engine['abs'][1] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
-$_engine['abs']['Есть'] =LangHelper::t("Имеется", "Mavjud", "Available");
-$_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "Not available");
+$_engine['drive'][0] = LangHelper::t("Передний", "Old", "Front");
+$_engine['drive'][1] = LangHelper::t("Задний", "Orqa", "Rear");
+$_engine['drive'][2] = LangHelper::t("Оба", "Barchasi", "Both");
+//$_engine['gearbox'][0] =LangHelper::t("Механическая", "Mexanik", "Manual");
+//$_engine['gearbox'][1] =LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
+$_engine['gearstop-front'][0] = LangHelper::t("Дисковые", "Diskli", "Disc");
+$_engine['gearstop-front'][1] = LangHelper::t("Барабанные", "Barabanli", "Drum");
+$_engine['gearstop-back'][0] = LangHelper::t("Дисковые", "Diskli", "Disc");
+$_engine['gearstop-back'][1] = LangHelper::t("Барабанные", "Barabanli", "Drum");
+//$_engine['fuel-type'][0] =LangHelper::t("Бензин", "Benzin", "Petrol");
+//$_engine['fuel-type'][1] =LangHelper::t("Дизель", "Dizel", "Diesel");
+//$_engine['fuel-type'][2] =LangHelper::t("Газ", "Gaz", "Gas");
+$_engine['abs'][0] = LangHelper::t("Имеется", "Mavjud", "Available");
+$_engine['abs'][1] = LangHelper::t("Не имеется", "Mavjud emas", "Not available");
+$_engine['abs']['Есть'] = LangHelper::t("Имеется", "Mavjud", "Available");
+$_engine['abs']['Нет'] = LangHelper::t("Не имеется", "Mavjud emas", "Not available");
+$_engine['special'][0] = LangHelper::t("Бензин", "Benzin", "Petrol");
+$_engine['special'][1] = LangHelper::t("Дизель", "Dizel", "Diesel");
+$_engine['special'][2] = LangHelper::t("Газ", "Gaz", "Gas");
+$_engine['auto_mex'][1] = LangHelper::t("Механическая", "Mexanik", "Manual");
+$_engine['auto_mex'][2] = LangHelper::t("Автоматическая", "Avtomatik", "Automatic");
 ?>
     <style>
 
@@ -73,24 +78,30 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
             .container {
                 margin: 0 0;
             }
+
             html {
                 overflow-x: auto;
             }
         }
+
         @media (max-width: 768px) {
 
         }
+
         @media (max-width: 768px) {
             .tab-content h3 {
                 padding: 0 30px !important;
             }
+
             #exTab2 a {
                 padding: 0 30px !important;
             }
+
             .tab-content p {
                 padding: 0 30px !important;
             }
         }
+
         .tab-content p {
             padding: 0 15px;
             font-size: 40px;
@@ -147,9 +158,9 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                         : <?= $transport->$file_title ?></a>
                 <?php } ?>
             </div>
-<?php if(!empty($pikups->$content)){?>
-            <p style="font-size: 18px; color: #868786; line-height: 28px; margin: 0;"><?=$pikups->$content?> </p>
-<?php }?>
+            <?php if (!empty($pikups->$content)) { ?>
+                <p style="font-size: 18px; color: #868786; line-height: 28px; margin: 0;"><?= $pikups->$content ?> </p>
+            <?php } ?>
             <div data-aos="fade-up" data-aos-delay="200">
                 <div class="gallery gallerySlider">
                     <div class="wrap">
@@ -183,84 +194,97 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
 
                     </div>
                 </div>
-            <div class="nav-tabs">
-                <div class="menu-links">
-                    <a href="#" class="active"><?=LangHelper::t("ОСНОВНЫЕ ХАРАКТЕРИСТИКИ", "ASOSIY TASNIFLARI", "MAIN SPECIFICATIONS"); ?></a>
-                    <a href="#"><?=LangHelper::t("ДВИГАТЕЛЬ", "DVIGATEL", "ENGINE"); ?></a>
-                    <a href="#"><?=LangHelper::t("ТОРМОЗНАЯ СИСТЕМА", "TORMOZ TIZIMI", "BRAKE SYSTEM"); ?></a>
-                    <a href="#"><?=LangHelper::t("ПРОЧИЕ ХАРАКТЕРИСТИКИ", "BOSHQA TASNIFLARI", "OTHER SPECIFICATIONS"); ?></a>
-                </div>
-            </div>
-            <div class="tab-caption">
-            <div class="tab-pane active">
-                <div class="box" style="transition-delay:.1s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Назначение", "Vazifasi", "Classification"); ?></div>
-                        <div class="scrollY">
-                            <p><?=LangHelper::t("Тип", "Turi", "Type") . ': ' . @$data['destination'] ?><br>
-                                <?=LangHelper::t("Класс", "Klassi", "Class") . ': ' . @$data['class'] ?></p>
-                        </div>
+                <div class="nav-tabs">
+                    <div class="menu-links">
+                        <a href="#"
+                           class="active"><?= LangHelper::t("ОСНОВНЫЕ ХАРАКТЕРИСТИКИ", "ASOSIY TASNIFLARI", "MAIN SPECIFICATIONS"); ?></a>
+                        <a href="#"><?= LangHelper::t("ДВИГАТЕЛЬ", "DVIGATEL", "ENGINE"); ?></a>
+                        <a href="#"><?= LangHelper::t("ТОРМОЗНАЯ СИСТЕМА", "TORMOZ TIZIMI", "BRAKE SYSTEM"); ?></a>
+                        <a href="#"><?= LangHelper::t("ПРОЧИЕ ХАРАКТЕРИСТИКИ", "BOSHQA TASNIFLARI", "OTHER SPECIFICATIONS"); ?></a>
                     </div>
+                </div>
+                <div class="tab-caption">
+                    <div class="tab-pane active">
+                        <div class="box" style="transition-delay:.1s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Назначение", "Vazifasi", "Classification"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= LangHelper::t("Тип", "Turi", "Type") . ': ' . @$data['destination'] ?><br>
+                                        <?= LangHelper::t("Класс", "Klassi", "Class") . ': ' . @$data['class'] ?></p>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="box" style="transition-delay:.2s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Размеры", "O'lchamlari", "Overall dimensions"); ?>, mm</div>
-                        <div class="scrollY">
-                            <p><?=LangHelper::t("Длина", "Uzunligi", "Length") . ': ' . @$data['length'] ?><br>
-                                <?=LangHelper::t("ширина", "Kengligi", "Width") . ': ' . @$data['width'] ?><br>
-                                <?=LangHelper::t("Высота", "Balandligi", "Height") . ': ' . @$data['height'] ?><br></p>
                         </div>
-                    </div>
+                        <div class="box" style="transition-delay:.2s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Размеры", "O'lchamlari", "Overall dimensions"); ?>,
+                                    mm
+                                </div>
+                                <div class="scrollY">
+                                    <p><?= LangHelper::t("Длина", "Uzunligi", "Length") . ': ' . @$data['length'] ?><br>
+                                        <?= LangHelper::t("ширина", "Kengligi", "Width") . ': ' . @$data['width'] ?><br>
+                                        <?= LangHelper::t("Высота", "Balandligi", "Height") . ': ' . @$data['height'] ?>
+                                        <br></p>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="box" style="transition-delay:.3s">
-                    <?php if($transport->type==0 or $transport->type==3){ ?>
-                    <div>
-                        <div class="t"><?=LangHelper::t("Пассажиры", "Yo'lovchilar", "Passengers"); ?></div>
-                        <div class="scrollY">
-                            <p><?=LangHelper::t("Пассажиров", "Yo'lovchilar soni", "Total passenger capacity") . ': ' . @$data['count'] ?><br>
-                                <?=LangHelper::t("Мест для сидения", "O'rindiqlar", "Number of seats") . ': ' . @$data['count_branch'] ?>
-                            </p>
                         </div>
-                    </div>
-                    <?php }else{ ?>
-                        <div>
-                            <div class="t"><?=LangHelper::t("Размеры кузова", "Kuzov o'lchamlari", "Body dimentions"); ?>, mm</div>
-                            <div class="scrollY">
-                                <p><?=LangHelper::t("Длина", "Uzunligi", "Length") . ': ' . @$data['length_trucks'] ?><br>
-                                    <?=LangHelper::t("ширина", "Kengligi", "Width") . ': ' . @$data['width_trucks'] ?><br>
-                                    <?=LangHelper::t("Высота", "Balandligi", "Height") . ': ' . @$data['height_trucks'] ?><br></p>
+                        <div class="box" style="transition-delay:.3s">
+                            <?php if ($transport->type == 0 or $transport->type == 3) { ?>
+                                <div>
+                                    <div class="t"><?= LangHelper::t("Пассажиры", "Yo'lovchilar", "Passengers"); ?></div>
+                                    <div class="scrollY">
+                                        <p><?= LangHelper::t("Пассажиров", "Yo'lovchilar soni", "Total passenger capacity") . ': ' . $transport->count ?>
+                                            <br>
+                                            <?= LangHelper::t("Мест для сидения", "O'rindiqlar", "Number of seats") . ': ' . @$data['count_branch'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            <?php } else { ?>
+                                <div>
+                                    <div class="t"><?= LangHelper::t("Размеры кузова", "Kuzov o'lchamlari", "Body dimentions"); ?>
+                                        , mm
+                                    </div>
+                                    <div class="scrollY">
+                                        <p><?= LangHelper::t("Длина", "Uzunligi", "Length") . ': ' . @$data['length_trucks'] ?>
+                                            <br>
+                                            <?= LangHelper::t("ширина", "Kengligi", "Width") . ': ' . @$data['width_trucks'] ?>
+                                            <br>
+                                            <?= LangHelper::t("Высота", "Balandligi", "Height") . ': ' . @$data['height_trucks'] ?>
+                                            <br></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                        <div class="box" style="transition-delay:.4s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Масса, кг", "Massasi, kg", "Weight, kg"); ?></div>
+                                <div class="scrollY">
+                                    <p>
+                                        <?= LangHelper::t("Полная масса", "To'la og'irligi", "GVM") . ': ' . @$data['mass'] ?>
+                                        <br>
+                                        <?= $transport->type == 1 ? LangHelper::t("Грузоподъемность", "Yuk ko'tarish qobiliyati", "Payload") . ': ' . $transport->trucks : '' ?>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    <?php } ?>
+                        <div class="box" style="transition-delay:.5s">
 
-                </div>
-                <div class="box" style="transition-delay:.4s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Масса, кг", "Massasi, kg", "Weight, kg"); ?></div>
-                        <div class="scrollY">
-                            <p>
-                                <?=LangHelper::t("Полная масса", "To'la og'irligi", "GVM") . ': ' . @$data['mass'] ?><br>
-                                <?=  LangHelper::t("Грузоподъемность", "Yuk ko'tarish qobiliyati", "Payload") . ': ' . @$data['mass-max'] ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.5s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Топлива", "Yoqilg`i", "Fuel"); ?></div>
+                                <div class="scrollY">
+                                    <?php if (!empty($transport->special)) { ?>
+                                        <p><?= LangHelper::t("Тип", "Turi", "Type") . ': ' . $_engine['special'][$transport->special] ?></p>
 
-                    <div>
-                        <div class="t"><?=LangHelper::t("Топлива", "Yoqilg`i", "Fuel"); ?></div>
-                        <div class="scrollY">
+                                    <?php } ?>
+                                    <p><?= LangHelper::t("Расход топлива", "Yoqilg`i sarfi", "Fuel consumption") . ': ' . @$data['expense_city'] ?></p>
+                                    <p><?= LangHelper::t("Объем бака", "Hajmi", "Volume of the tank") . ': ' . @$data['fuel-size'] ?></p>
 
-                            <p><?=LangHelper::t("Тип", "Turi", "Type") . ': ' . $_engine['fuel-type'][ @$data['fuel-type'] ] ?></p>
-                            <p><?=LangHelper::t("Расход топлива", "Yoqilg`i sarfi", "Fuel consumption") . ': ' . @$data['expense_city'] ?></p>
-                            <p><?=LangHelper::t("Объем бака", "Hajmi", "Volume of the tank") . ': ' . @$data['fuel-size'] ?></p>
+                                </div>
+                            </div>
 
-                        </div>
-                    </div>
-
-                    <?php /*
+                            <?php /*
 
                      <div>
                         <div class="t"><?=LangHelper::t("КОЛИЧЕСТВО ДВЕРЕЙ", "ESHIKLAR SONI", "NUMBER OF DOORS"); ?></div>
@@ -293,55 +317,55 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                         </div>
                     </div> */ ?>
 
-                </div>
-            </div>
-            <div class="tab-pane">
-                <div class="box" style="transition-delay:.1s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Модель", "Model", "Model"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$data['engine_model'] ?></p>
                         </div>
                     </div>
+                    <div class="tab-pane">
+                        <div class="box" style="transition-delay:.1s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Модель", "Model", "Model"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['engine_model'] ?></p>
+                                </div>
+                            </div>
 
 
-                </div>
-                <div class="box" style="transition-delay:.2s">
-
-                    <div>
-                        <div class="t"><?=LangHelper::t("Объем", "Hajmi", "Volume"); ?>, cm<sup>3</sup></div>
-                        <div class="scrollY">
-                            <p><?=@$data['engine_volume'] ?></p>
                         </div>
-                    </div>
+                        <div class="box" style="transition-delay:.2s">
 
-                </div>
-                <div class="box" style="transition-delay:.3s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Мощность, л.с. / об.мин", "Quvvati, o.k./ayl.", "Max.power, h.p/rpm"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$data['max-power'] . ' / ' . @$data['power-rotate'] ?></p>
-                        </div>
-                    </div>
+                            <div>
+                                <div class="t"><?= LangHelper::t("Объем", "Hajmi", "Volume"); ?>, cm<sup>3</sup></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['engine_volume'] ?></p>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="box" style="transition-delay:.4s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Количество цилиндров", "Silindr soni", "Number of cilinders"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$_engine['cilinders'][@$data['cilinders']] ?></p>
                         </div>
-                    </div>
+                        <div class="box" style="transition-delay:.3s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Мощность, л.с. / об.мин", "Quvvati, o.k./ayl.", "Max.power, h.p/rpm"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['max-power'] . ' / ' . @$data['power-rotate'] ?></p>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="box" style="transition-delay:.5s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Тип", "Turi", "Type"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$_engine['type'][@$data['type']] ?></p>
                         </div>
-                    </div>
-                    <?php /*
+                        <div class="box" style="transition-delay:.4s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Количество цилиндров", "Silindr soni", "Number of cilinders"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['cilinders'][@$data['cilinders']] ?></p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box" style="transition-delay:.5s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Тип", "Turi", "Type"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['type'][@$data['type']] ?></p>
+                                </div>
+                            </div>
+                            <?php /*
                     <div>
                         <div class="t">КОМПЛЕКТАЦИЯ</div>
                         <div class="scrollY">
@@ -359,123 +383,128 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                             <p>- Сиденье водителя с механическим подрессориванием</p>
                         </div>
                     </div> */ ?>
-                </div>
-            </div>
-            <div class="tab-pane">
-                <div class="box" style="transition-delay:.1s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Передние", "Oldi", "Front "); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$_engine['gearstop-front'][@$data['gearstop-front']] ?></p>
                         </div>
                     </div>
-                </div>
-                <div class="box" style="transition-delay:.2s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Задние", "Orqa", "Rear"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$_engine['gearstop-back'][@$data['gearstop-back']] ?></p>
+                    <div class="tab-pane">
+                        <div class="box" style="transition-delay:.1s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Передние", "Oldi", "Front "); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['gearstop-front'][@$data['gearstop-front']] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" style="transition-delay:.2s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Задние", "Orqa", "Rear"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['gearstop-back'][@$data['gearstop-back']] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" style="transition-delay:.3s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Подвеска передняя", "Old osmasi", "Front suspension"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['podves-front'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" style="transition-delay:.4s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Подвеска задняя", "Orqa osmasi", "Rear suspension"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['podves-back'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box" style="transition-delay:.5s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Система ABS", "ABS tizimi", "ABS system"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['abs'][@$data['abs']] ?><br>
+                                </div>
+                            </div>
+                            <?php
+                            /*
+                            <div>
+                                <div class="t">КОМПЛЕКТАЦИЯ</div>
+                                <div class="scrollY">
+                                    <p>- Пневматическая подвеска</p>
+                                    <p>- Боковые стекла на клеевом соединении</p>
+                                    <p>- Форточки на боковых стеклах</p>
+                                    <p>- Зеркала заднего вида с подогревом</p>
+                                    <p>- Трафаретные маршрутоукахатели</p>
+                                    <p>- Сиденье водителя с механическим подрессориванием</p>
+                                    <p>- Пневматическая подвеска</p>
+                                    <p>- Боковые стекла на клеевом соединении</p>
+                                    <p>- Форточки на боковых стеклах</p>
+                                    <p>- Зеркала заднего вида с подогревом</p>
+                                    <p>- Трафаретные маршрутоукахатели</p>
+                                    <p>- Сиденье водителя с механическим подрессориванием</p>
+                                </div>
+                            </div> */
+                            ?>
                         </div>
                     </div>
-                </div>
-                <div class="box" style="transition-delay:.3s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Подвеска передняя", "Old osmasi", "Front suspension"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$data['podves-front']?></p>
+                    <div class="tab-pane">
+                        <div class="box" style="transition-delay:.1s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Коробка передач", "Uzatmalar qutisi", "Transmission"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$_engine['auto_mex'][$transport->auto_mex] ?><br>
+                                        <?= LangHelper::t("Количество передач", "Uzatishlar soni", "Number of speeds") . ': ' . @$data['gearbox_count'] ?>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.4s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Подвеска задняя", "Orqa osmasi", "Rear suspension"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$data['podves-back']?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.5s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Система ABS", "ABS tizimi", "ABS system"); ?></div>
-                        <div class="scrollY">
-                            <p><?= @$_engine['abs'][@$data['abs']] ?><br>
-                        </div>
-                    </div>
-                    <?php
-                    /*
-                    <div>
-                        <div class="t">КОМПЛЕКТАЦИЯ</div>
-                        <div class="scrollY">
-                            <p>- Пневматическая подвеска</p>
-                            <p>- Боковые стекла на клеевом соединении</p>
-                            <p>- Форточки на боковых стеклах</p>
-                            <p>- Зеркала заднего вида с подогревом</p>
-                            <p>- Трафаретные маршрутоукахатели</p>
-                            <p>- Сиденье водителя с механическим подрессориванием</p>
-                            <p>- Пневматическая подвеска</p>
-                            <p>- Боковые стекла на клеевом соединении</p>
-                            <p>- Форточки на боковых стеклах</p>
-                            <p>- Зеркала заднего вида с подогревом</p>
-                            <p>- Трафаретные маршрутоукахатели</p>
-                            <p>- Сиденье водителя с механическим подрессориванием</p>
-                        </div>
-                    </div> */
-                    ?>
-                </div>
-            </div>
-            <div class="tab-pane">
-                <div class="box" style="transition-delay:.1s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Коробка передач", "Uzatmalar qutisi", "Transmission"); ?></div>
-                        <div class="scrollY">
-                            <p><?= @$_engine['gearbox'][@$data['gearbox']] ?><br>
-                               <?=LangHelper::t("Количество передач", "Uzatishlar soni", "Number of speeds") . ': ' . @$data['gearbox_count'] ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.2s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Колесная формула", "G'ildirak formulasi (nisbati)", "Driving system"); ?></div>
-                        <div class="scrollY">
-                            <p><?=@$data['gears'] ?></p>
-                        </div>
+                        <div class="box" style="transition-delay:.2s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Колесная формула", "G'ildirak formulasi (nisbati)", "Driving system"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= @$data['gears'] ?></p>
+                                </div>
 
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.3s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("шини/колеса", "shinalar/g'ildiraklar", "tires/wheels"); ?></div>
-                        <div class="scrollY">
-                            <p><?=LangHelper::t("Размер Шин", "Shinalar o'lchami", "Tire size") . ': ' . @$data['шин'] ?></p>
-                            <p><?=LangHelper::t("Размер Шин", "G'ildiraklar o'lchami", "Wheel size") . ': ' . @$data['колёс'] ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <?php /*<div>
+                        <div class="box" style="transition-delay:.3s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("шини/колеса", "shinalar/g'ildiraklar", "tires/wheels"); ?></div>
+                                <div class="scrollY">
+                                    <p><?= LangHelper::t("Размер Шин", "Shinalar o'lchami", "Tire size") . ': ' . @$data['шин'] ?></p>
+                                    <p><?= LangHelper::t("Размер Шин", "G'ildiraklar o'lchami", "Wheel size") . ': ' . @$data['колёс'] ?></p>
+                                </div>
+                            </div>
+                            <?php /*<div>
                         <div class="t"><?=LangHelper::t("Привод", "Yuritma", "Wheel drive"); ?></div>
                         <div class="scrollY">
                             <p><?=@$_engine['drive'][@$data['drive']] ?></p>
                         </div>
                     </div> */ ?>
-                </div>
-                <div class="box" style="transition-delay:.4s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("База автомобиля", "Avtomobil bazasi", "Wheel base"); ?>, mm</div>
-                        <div class="scrollY">
-                            <p><?=@$data['base'] ?></p>
                         </div>
-                    </div>
-                </div>
-                <div class="box" style="transition-delay:.5s">
-                    <div>
-                        <div class="t"><?=LangHelper::t("Колея", "G'ildiraklar orasidagi masofa", "Wheeltrack"); ?>, mm</div>
-                        <div class="scrollY">
-                            <p><?=LangHelper::t("Передняя", "Old", "Front") . ': ' . @$data['base_front'] ?><br>
-                               <?=LangHelper::t("Задняя", "Orqa", "Rear") . ': ' . @$data['base_back'] ?>
-                            </p>
+                        <div class="box" style="transition-delay:.4s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("База автомобиля", "Avtomobil bazasi", "Wheel base"); ?>
+                                    , mm
+                                </div>
+                                <div class="scrollY">
+                                    <p><?= @$data['base'] ?></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <?php /*
+                        <div class="box" style="transition-delay:.5s">
+                            <div>
+                                <div class="t"><?= LangHelper::t("Колея", "G'ildiraklar orasidagi masofa", "Wheeltrack"); ?>
+                                    , mm
+                                </div>
+                                <div class="scrollY">
+                                    <p><?= LangHelper::t("Передняя", "Old", "Front") . ': ' . @$data['base_front'] ?>
+                                        <br>
+                                        <?= LangHelper::t("Задняя", "Orqa", "Rear") . ': ' . @$data['base_back'] ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <?php /*
                     <div>
                         <div class="t">КОМПЛЕКТАЦИЯ</div>
                         <div class="scrollY">
@@ -493,139 +522,147 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
                             <p>- Сиденье водителя с механическим подрессориванием</p>
                         </div>
                     </div> */ ?>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div class="colors-pan">
-            <section><?=LangHelper::t("Цвета автомобилей", "Avtomobil ranglari", "Car colors"); ?> </section>
-            <ul id="colors-pan-id">
-                <li onclick="change_color('col1', 'Splash White', '#DADBD9')" >
-                    <input id="col1" type="radio"name="color" /><label for="col1" class="wrapper-1 c-circle" style="background-color: #DADBD9"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col2', 'Titanium Silver', '#DADBD9')">
-                    <input id="col2" type="radio" name="color" /><label for="col2" class="wrapper-1 c-circle" style="background-color: #C0BFBF"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col3', 'Galena Gray metallic', '#DADBD9')">
-                    <input id="col3" type="radio" name="color" /><label for="col3" class="wrapper-1 c-circle" style="background-color: #8B8A89"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col4', 'Obsidian Gray mica', '#DADBD9')">
-                    <input id="col4" type="radio" name="color" /><label for="col4" class="wrapper-1 c-circle" style="background-color: #5E5E5E"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col5', 'Cosmic Black mica', '#DADBD9')">
-                    <input id="col5" type="radio" name="color" /><label for="col5" class="wrapper-1 c-circle" style="background-color: #151414"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col6', 'Sapphire Blue mica', '#DADBD9')">
-                    <input id="col6" type="radio" name="color" /><label for="col6" class="wrapper-1 c-circle" style="background-color: #2B3280"></label>
-                    <div class="c-line"></div>
-                </li>
-                <li onclick="change_color('col7', 'Red Spinel mica', '#DADBD9')" class="active">
-                    <input id="col7" type="radio" name="color" /><label for="col7" class="wrapper-1 c-circle" style="background-color: #871518"></label>
-                    <div class="c-line"></div>
-                </li>
-            </ul>
-            <div id="auto-color-text">
-                Red Spinel mica
-            </div>
-            <script type="text/javascript">
+            <div class="colors-pan">
+                <section><?= LangHelper::t("Цвета автомобилей", "Avtomobil ranglari", "Car colors"); ?> </section>
+                <ul id="colors-pan-id">
+                    <li onclick="change_color('col1', 'Splash White', '#DADBD9')">
+                        <input id="col1" type="radio" name="color"/><label for="col1" class="wrapper-1 c-circle"
+                                                                           style="background-color: #DADBD9"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col2', 'Titanium Silver', '#DADBD9')">
+                        <input id="col2" type="radio" name="color"/><label for="col2" class="wrapper-1 c-circle"
+                                                                           style="background-color: #C0BFBF"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col3', 'Galena Gray metallic', '#DADBD9')">
+                        <input id="col3" type="radio" name="color"/><label for="col3" class="wrapper-1 c-circle"
+                                                                           style="background-color: #8B8A89"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col4', 'Obsidian Gray mica', '#DADBD9')">
+                        <input id="col4" type="radio" name="color"/><label for="col4" class="wrapper-1 c-circle"
+                                                                           style="background-color: #5E5E5E"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col5', 'Cosmic Black mica', '#DADBD9')">
+                        <input id="col5" type="radio" name="color"/><label for="col5" class="wrapper-1 c-circle"
+                                                                           style="background-color: #151414"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col6', 'Sapphire Blue mica', '#DADBD9')">
+                        <input id="col6" type="radio" name="color"/><label for="col6" class="wrapper-1 c-circle"
+                                                                           style="background-color: #2B3280"></label>
+                        <div class="c-line"></div>
+                    </li>
+                    <li onclick="change_color('col7', 'Red Spinel mica', '#DADBD9')" class="active">
+                        <input id="col7" type="radio" name="color"/><label for="col7" class="wrapper-1 c-circle"
+                                                                           style="background-color: #871518"></label>
+                        <div class="c-line"></div>
+                    </li>
+                </ul>
+                <div id="auto-color-text">
+                    Red Spinel mica
+                </div>
+                <script type="text/javascript">
 
-                let hh = $('.row.tab-pane.active').outerHeight( true );
+                    let hh = $('.row.tab-pane.active').outerHeight(true);
                     $('.spectre-tab').css('height', hh + 'px');
 
-                window.addEventListener("resize", function () {
-                    let hh = $('.row.tab-pane.active').outerHeight( true );
+                    window.addEventListener("resize", function () {
+                        let hh = $('.row.tab-pane.active').outerHeight(true);
                         $('.spectre-tab').css('height', hh + 'px');
-                });
+                    });
 
 
-                function change_height() {
-                    setTimeout(function () {
-                        let hh = $('.row.tab-pane.active').outerHeight( true );
-                        $('.spectre-tab').css('height', hh + 'px');
-                    }, 50)
-                }
+                    function change_height() {
+                        setTimeout(function () {
+                            let hh = $('.row.tab-pane.active').outerHeight(true);
+                            $('.spectre-tab').css('height', hh + 'px');
+                        }, 50)
+                    }
 
 
-                function change_color(id, text, color) {
-                    $('#colors-pan-id li').removeClass('active')
-                    $('#auto-color-text').html(text)
-                    $('#'+id).parent().addClass('active')
-                }
-            </script>
+                    function change_color(id, text, color) {
+                        $('#colors-pan-id li').removeClass('active')
+                        $('#auto-color-text').html(text)
+                        $('#' + id).parent().addClass('active')
+                    }
+                </script>
+            </div>
         </div>
     </div>
-</div>
 <?php if (!empty($tabpanelactive && $tabpanel)) { ?>
-<div class="row">
+    <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6">
             <div id="exTab2">
                 <ul class="nav nav-tabs mobile-for">
 
                     <li class="active">
-                        <a class="under-hover" class="active" href="#<?=$tabpanelactive->id?>" data-toggle="tab"><?=$tabpanelactive->$title?></a>
+                        <a class="under-hover" class="active" href="#<?= $tabpanelactive->id ?>"
+                           data-toggle="tab"><?= $tabpanelactive->$title ?></a>
                     </li>
-                    <?php foreach ($tabpanel as $t):?>
-                    <li><a class="under-hover preload" href="#<?=$t->id?>" data-toggle="tab"><?=$t->$title?></a>
-                    </li>
-                 <?php endforeach;?>
+                    <?php foreach ($tabpanel as $t): ?>
+                        <li><a class="under-hover preload" href="#<?= $t->id ?>" data-toggle="tab"><?= $t->$title ?></a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
 
             </div>
         </div>
     </div>
     <div class="tab-content spectre-tab" style="margin-bottom: 30px; height: auto !important;">
-        <div class="row tab-pane active" id="<?=$tabpanelactive->id?>">
+        <div class="row tab-pane active" id="<?= $tabpanelactive->id ?>">
             <div class="col-md-6">
                 <div class="tab-content">
-                    <img src="/uploads/tab-panel/<?=$tabpanelactive->photo?>" class="tab-pane active" alt=""
+                    <img src="/uploads/tab-panel/<?= $tabpanelactive->photo ?>" class="tab-pane active" alt=""
                          style="width: 100%;">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="tab-pane active" style="margin-top: 30px;">
-                    <p><?=$tabpanelactive->$title?></p>
-                    <h3><?=$tabpanelactive->$content?>
+                    <p><?= $tabpanelactive->$title ?></p>
+                    <h3><?= $tabpanelactive->$content ?>
                     </h3>
                 </div>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             </div>
         </div>
-        <?php foreach ($tabpanel as $t):?>
-        <div class="row tab-pane" id="<?=$t->id?>">
-            <div class="col-md-6">
-                <div class="tab-content">
-                    <img src="/uploads/tab-panel/<?=$t->photo?>" class="tab-pane active" alt=""
-                         style="width: 100%;">
+        <?php foreach ($tabpanel as $t): ?>
+            <div class="row tab-pane" id="<?= $t->id ?>">
+                <div class="col-md-6">
+                    <div class="tab-content">
+                        <img src="/uploads/tab-panel/<?= $t->photo ?>" class="tab-pane active" alt=""
+                             style="width: 100%;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tab-pane" style="margin-top: 30px;">
+                        <p><?= $t->$title ?></p>
+                        <h3><?= $t->$content ?>
+                    </div>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="tab-pane" style="margin-top: 30px;">
-                    <p><?=$t->$title?></p>
-                    <h3><?=$t->$content?>
-                </div>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            </div>
-        </div>
-<?php endforeach;?>
+        <?php endforeach; ?>
     </div>
 <?php } ?>
 
-<?php if($transport->id == 32){?>
+<?php if ($transport->id == 32) { ?>
     <div class="container" style="">
-        <div class="row" >
+        <div class="row">
             <div class="col-md-6" style="margin-top: 30px;">
-             <img src="/images/Screenshot_3.png" alt="" style="width: 100%;">
+                <img src="/images/Screenshot_3.png" alt="" style="width: 100%;">
                 </a>
             </div>
-            <div class="col-md-3 ext mobile-margin"  style="margin-top: 160px;">
+            <div class="col-md-3 ext mobile-margin" style="margin-top: 160px;">
                 <a href="/images/360/index.html" class="ButtonBox js_internal-link under-hover preload"
                    style="opacity: 1; text-decoration: none; transform: matrix(1, 0, 0, 1, 0, 0);">
                     <span class="ButtonBox-text ButtonBox-text-a"><img src="/images/360-video-icon-png-1-original.png"> <span>ЭКС/ИНТЕРЬЕР</span></span>
@@ -640,19 +677,20 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
         </div>
     </div>
 
-<?php }?>
-<?php if(!empty($pikups)){?>
+<?php } ?>
+<?php if (!empty($pikups)) { ?>
     <div class="container gallerylink" style="padding: 0 10px;">
         <div class="row">
             <div class="col-md-6" style="margin: 30px 0;">
                 <div class="archive section-gap" data-aos="fade-up" style="padding: 0 0 !important;">
                     <div class="transition-height">
                         <div class="boxes archive_slider" style="margin-top: 0 !important;">
-                            <a href="/transport/galleryitem/<?=$pikups->transport_id?>" class="item preload gallery-bg-fix"
-                               style="background-image:url(/uploads/pikups-page/<?=$pikups->gallery_image?>); width: 100%; height: 315px; background-size:cover; background-position: right;">
+                            <a href="/transport/galleryitem/<?= $pikups->transport_id ?>"
+                               class="item preload gallery-bg-fix"
+                               style="background-image:url(/uploads/pikups-page/<?= $pikups->gallery_image ?>); width: 100%; height: 315px; background-size:cover; background-position: right;">
                                 <div>
                                     <div>
-                                        <span class="title"><?=LangHelper::t("ГАЛЕРЕЯ", "GALEREYA", "PHOTOS"); ?></span>
+                                        <span class="title"><?= LangHelper::t("ГАЛЕРЕЯ", "GALEREYA", "PHOTOS"); ?></span>
                                         <span class="day"></span>
                                     </div>
 
@@ -664,15 +702,15 @@ $_engine['abs']['Нет'] =LangHelper::t("Не имеется", "Mavjud emas", "
             </div>
             <div class="col-md-6" style="margin: 30px 0; position: relative">
                 <div class="spectre-video-container">
-                    <iframe width="100%" height="100%" src="<?=$pikups->youtube_link?>" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" src="<?= $pikups->youtube_link ?>" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                 </div>
             </div>
         </div>
     </div>
 
-<?php }?>
+<?php } ?>
 
     <div data-aos="fade-up">
     <div class="site_bread">

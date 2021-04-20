@@ -270,7 +270,7 @@ if($files = \common\models\Pages::find()->where(['page'=>'files'])->one()){
                             <a href="<?= $links[$product->id] ?>" class="img"><img src="/uploads/products/<?=$product->id .'/'. $product->image ?>" alt=""></a>
                         </div>
                         <?php
-                        $nav_product .= '<div class="item"><img src="/uploads/products/'.$product->id .'/thumb/'. $product->image . '" alt=""></div> ';
+                        $nav_product .= '<div class="item"><img src="/uploads/products/'.$product->id .'/thumb/'. $product->image_icon . '" alt=""></div> ';
                     }
                 } ?>
             </div>

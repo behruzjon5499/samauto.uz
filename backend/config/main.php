@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-	'homeUrl' => '/admin',
+//	'homeUrl' => '/admin',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -22,10 +22,10 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@backend/views' => '@backend/views/lte'
+                    '@app/views' => '@app/views/lte'
                 ],
             ],
-        ],		
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -46,7 +46,7 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],        
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
