@@ -44,7 +44,6 @@ if ($files = \common\models\Pages::find()->where(['page' => 'files'])->one()) {
 }
 $regions = ArrayHelper::map(Regions::find()->all(),'id','name_ru');
 $dillers = ArrayHelper::map(Dillers::find()->all(),'id','title_ru');
-
 $model = new PickupForm();
 ?>
 <?php $this->beginPage() ?>
@@ -531,8 +530,11 @@ if (isset($action) || (isset($this->params['actions']) && !empty($this->params['
                     <div class="inf">
                         <label for=""><?= LangHelper::t("Регион", "Viloyat", "Region"); ?></label>
                         <?= $form->field($model, 'region')->dropDownList(
-                         $regions
-                        )->label(false) ?>
+                         $regions,
+                         ['options'=> ['class' => 'region']]
+
+    )->label(false);
+                        ?>
                     </div>
                     <div class="inf">
                         <label for=""><?= LangHelper::t("Дилер", "Diller", "Diller"); ?></label>
@@ -642,7 +644,27 @@ $(document).ready(function() {
         
     })
     
+ $('#pickupform-region').on('click', function () {
+       
+      var id = $(this).val();
+           console.log(id);
+           console.log(33);
+        $.ajax({
+            type: 'get',
+            url: '/site/diller',
+            data:{id:id},
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+                if(data.status==1) $('.ajax-leader-wrap').html(data.html);
+                
+            },
+     
+        });
+   })
 });";
+
+
 $this->registerJs($script, yii\web\View::POS_END); ?>
 
 

@@ -35,6 +35,7 @@ use common\models\User;
 use common\models\Vacancy;
 use common\models\VacancyCategory;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
@@ -1268,6 +1269,17 @@ class SiteController extends Controller
             return $this->redirect('/site/index');
 
 
+}
+public function actionDiller()
+{
+    $id = Yii::$app->request->get('id','');
+        $dillers = ArrayHelper::map(Dillers::find()->where(['region_id'=>$id])->all(),'id','title_ru');
+    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    return [
+        'status' => 1,
+        'dillers' => $dillers,
+
+    ];
 }
 	
 }
