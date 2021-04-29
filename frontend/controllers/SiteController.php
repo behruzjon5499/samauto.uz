@@ -1245,11 +1245,12 @@ class SiteController extends Controller
         exit;
 
     }
-    public function actionPickupform()
+    public function actionPickupForm()
         {
             $post = Yii::$app->request->post();
-
-
+//
+//VarDumper::dump($post);
+//die();
             $question = new PickupForm();
 
             if($question->load($post)) {
@@ -1272,14 +1273,12 @@ class SiteController extends Controller
 }
 public function actionDiller()
 {
-    $id = Yii::$app->request->get('id','');
-        $dillers = ArrayHelper::map(Dillers::find()->where(['region_id'=>$id])->all(),'id','title_ru');
-    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-    return [
-        'status' => 1,
-        'dillers' => $dillers,
-
-    ];
+    if (Yii::$app->request->isAjax) {
+        $id = Yii::$app->request->get('id');
+        $dillers = Dillers::find()->where(['region_id' => $id])->all();
+        return $this->asJson($dillers);
+    }
+    return $this->asJson([]);
 }
 	
 }

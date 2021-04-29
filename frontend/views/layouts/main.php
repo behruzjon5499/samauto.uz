@@ -42,8 +42,8 @@ if ($files = \common\models\Pages::find()->where(['page' => 'files'])->one()) {
     $files = false;
 
 }
-$regions = ArrayHelper::map(Regions::find()->all(),'id','name_ru');
-$dillers = ArrayHelper::map(Dillers::find()->all(),'id','title_ru');
+$regions = Regions::find()->all();
+$dillers = Dillers::find()->all();
 $model = new PickupForm();
 ?>
 <?php $this->beginPage() ?>
@@ -528,19 +528,32 @@ if (isset($action) || (isset($this->params['actions']) && !empty($this->params['
             <div class="_row">
                 <div class="col-6">
                     <div class="inf">
-                        <label for=""><?= LangHelper::t("Регион", "Viloyat", "Region"); ?></label>
-                        <?= $form->field($model, 'region')->dropDownList(
-                         $regions,
-                         ['options'=> ['class' => 'region']]
-
-    )->label(false);
-                        ?>
+                        <?php if ($regions): ?>
+                            <div class="regions">
+                                <label><?= Yii::t('yii', 'Regions') ?></label>
+                                <select class="form-control chosen-select" id="pickupform-region" name="PickupForm[region]">
+                                    <option value=""><?= Yii::t('yii', 'Select') ?></option>
+                                    <?php foreach ($regions as $region): ?>
+                                        <option class="regions"
+                                                value="<?= $region->id ?>"><?= $region->name_ru ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="inf">
-                        <label for=""><?= LangHelper::t("Дилер", "Diller", "Diller"); ?></label>
-                        <?= $form->field($model, 'diller')->dropDownList(
-                            $dillers
-                        )->label(false)  ?>
+                        <?php if ($dillers): ?>
+                            <div class="dillers">
+                                   <label><?= Yii::t('yii', 'Dillers') ?></label>
+                                <select class="form-control chosen-select" id="dillers" name="PickupForm[diller]">
+                                    <option value=""><?= Yii::t('yii', 'Select') ?></option>
+                                    <?php foreach ($dillers as $diller): ?>
+                                        <option class="diller"
+                                                value="<?= $diller->id ?>"><?= $diller->title_ru ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-6">
@@ -564,28 +577,28 @@ if (isset($action) || (isset($this->params['actions']) && !empty($this->params['
                     <div class="inf">
                         <div class="oferta">
                             <?= $form->field($model, 'check')->checkbox(['onclick' =>
-                                'showInternDetails()','style'=>'width:20px;'])->label(false); ?>
+                                'showInternDetails()', 'style' => 'width:20px;'])->label(false); ?>
                             <a href="http://xarid.samauto.uz/uploads/22.docx">Download</a>
                         </div>
                         <div class="inf">
                             <div class="oferta">
                                 <?= $form->field($model, 'check1')->checkbox(['onclick' =>
-                                    'showInternDetails()','style'=>'width:20px;'])->label(false); ?>
+                                    'showInternDetails()', 'style' => 'width:20px;'])->label(false); ?>
                                 <a href="http://xarid.samauto.uz/uploads/22.docx">Download</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                <div class="inf">
-                    <label for=""><?= LangHelper::t("Отчество", "Otasining ismi", "Middle Name"); ?></label>
-                    <?= $form->field($model, 'middle_name')->textInput()->label(false) ?>
+                    <div class="inf">
+                        <label for=""><?= LangHelper::t("Отчество", "Otasining ismi", "Middle Name"); ?></label>
+                        <?= $form->field($model, 'middle_name')->textInput()->label(false) ?>
+                    </div>
+                    <div class="inf">
+                        <label for=""><?= LangHelper::t("E-mail", "E-mail", "E-mail"); ?></label>
+                        <?= $form->field($model, 'email')->textInput()->label(false) ?>
+                    </div>
                 </div>
-                <div class="inf">
-                    <label for=""><?= LangHelper::t("E-mail", "E-mail", "E-mail"); ?></label>
-                    <?= $form->field($model, 'email')->textInput()->label(false) ?>
-                </div>
-            </div>
             </div>
             <button type="submit" class="ButtonBox js_internal-link">
                 <span class="ButtonBox-text"><?= LangHelper::t("ОТПРАВИТЬ", "YUBORISH", "SEND"); ?></span>
@@ -650,18 +663,23 @@ $(document).ready(function() {
            console.log(id);
            console.log(33);
         $.ajax({
-            type: 'get',
             url: '/site/diller',
             data:{id:id},
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-                if(data.status==1) $('.ajax-leader-wrap').html(data.html);
-                
-            },
-     
-        });
-   })
+success:function(res) {
+console.log(res);
+var html = '';
+html += \"<option value=''></option>\";
+for(var i = 0; i < res.length; i++){
+html += \"<option value='\"+ res[i]['id']+\"' >\"+res[i]['title_ru']+'</option>';
+}
+console.log(33);
+$('#dillers').html(html);
+},
+error:function() {
+alert('error')
+}
+})
+});
 });";
 
 
